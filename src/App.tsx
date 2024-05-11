@@ -1,19 +1,27 @@
-import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import Home from './components/HomePage/Home'
 import Footer from './components/Footer'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SeekReferral from './components/SeekReferral';
+import ViewRequests from './components/ViewRequests';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className=''>
-    {/* <header className='fixed top-0'><Header /></header> */}
-    <Header />
-    <Home />
-    <Footer />
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="seek_referral" element={<SeekReferral />} />
+        <Route path="view_requests/:id" element={<ViewRequests />} />
+        <Route path="login" element={<Login />} />
+        <Route path="sign-up" element={<SignUp />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   )
 }
 

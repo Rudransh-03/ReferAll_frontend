@@ -6,7 +6,7 @@ const FunFact = () => {
         <div className='flex'>
             <img src={tick} className='w-8 h-8'/><span className='mt-1'>Funfact</span>
             </div>
-        <div className='text-gray-700'>Referrals increase your chances of getting an interview call from a company by as much as 30%!!</div>
+        <div className='text-gray-700'>Referrals increase your chances of getting an interview call from a company by as much as 40%!!</div>
     </div>
   )
 }
