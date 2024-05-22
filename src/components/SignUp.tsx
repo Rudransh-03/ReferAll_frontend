@@ -2,60 +2,34 @@ import { FormEvent, useRef } from 'react';
 import exclamation from './../assets/exclamation.png'
 import monkey from '../assets/signUpMonkey.png'
 import man from '../assets/SignUpMan.png'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-interface signUpBody{
-    firstName: string,
-    lastName: string,
-    emailId: string,
-    password: string,
-    designation: string,
-    yoe: string,
-    currentCompany: string,
-    resumeUrl: string,
-    bio: string | null,
-}
 
 const SignUp = () => {
-
-    const fNameRef = useRef<HTMLInputElement | null>(null);
-    const lNameRef = useRef<HTMLInputElement | null>(null);
-    const emailRef = useRef<HTMLInputElement | null>(null);
-    const passRef = useRef<HTMLInputElement | null>(null);
-    const designationRef = useRef<HTMLInputElement | null>(null);
-    const yoeRef = useRef<HTMLInputElement | null>(null);
-    const companyNameRef = useRef<HTMLInputElement | null>(null);
-    const resumeRef = useRef<HTMLInputElement | null>(null);
-    const bioRef = useRef<HTMLTextAreaElement | null>(null);
+    const navigate = useNavigate();
+    const formRef = useRef<HTMLFormElement | null>(null);
 
     function submitHandler(event: FormEvent<HTMLFormElement>){
         event.preventDefault();
-        if(fNameRef.current && lNameRef.current && emailRef.current && passRef.current && designationRef.current && yoeRef.current && companyNameRef.current && resumeRef.current && bioRef.current){
-            const user : signUpBody = {
-                firstName: fNameRef.current.value,
-                lastName: lNameRef.current.value,
-                emailId: emailRef.current.value,
-                password: passRef.current.value,
-                designation: designationRef.current.value, 
-                yoe: yoeRef.current.value,
-                currentCompany: companyNameRef.current.value,
-                resumeUrl: resumeRef.current.value,
-                bio: bioRef.current.value
-            }
 
-            console.log(user);
+        if(formRef.current){
+            const formElements = new FormData(formRef.current);
+            const formData = Object.fromEntries(formElements.entries());
 
-            fNameRef.current.value='',
-            lNameRef.current.value= '',
-            emailRef.current.value='',
-            passRef.current.value='',
-            designationRef.current.value='',
-            yoeRef.current.value='',
-            companyNameRef.current.value='',
-            resumeRef.current.value='',
-            bioRef.current.value=''
-        }
-        else {
-            console.error('Some ref is null');
+            console.log(formData);
+
+            axios.post('http://localhost:8080/auth/signup', formData)
+            .then(response => {
+                console.log('SignUp successful:', response.data);
+                navigate("/login");
+            })
+            .catch(error => {
+                console.error('SignUp failed:', error);
+                // Handle login error
+            });
+
+            // formRef.current.reset();
         }
     }
 
@@ -68,51 +42,54 @@ const SignUp = () => {
         </div>
         <div className='mt-12 flex'>
             <div className="w-4/6 text-gray-600">
-                <form onSubmit={submitHandler}>
+                <form ref={formRef} onSubmit={submitHandler}>
                     <div className='w-3/4 flex justify-between'>
                         <div className="mb-8 w-1/2 mr-8">
-                            <label htmlFor="fName">First Name: <br/></label>
-                            <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="fName" name="fName" ref={fNameRef} required />
+                            <label htmlFor="firstName">First Name: <br/></label>
+                            <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="firstName" name="firstName" required />
                         </div>
                         <div className="mb-8 w-1/2">
-                            <label htmlFor="lName">Last Name: <br/></label>
-                            <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="lName" name="lName" ref={lNameRef} />
+                            <label htmlFor="lastName">Last Name: <br/></label>
+                            <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="lastName" name="lastName" />
                         </div>
+                    </div>
+                    <div className="mb-8 w-3/4">
+                        <label htmlFor="contactNumber">Phone Number (With Country Code): <br /></label>
+                        <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="tel" id="contactNumber" name="contactNumber" required />
                     </div>
                     <div className="mb-8 w-3/4">
                         <label htmlFor="emailId">Your Email Id: <br /></label>
-                        <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="email" id="emailId" name="emailId" ref={emailRef} required />
+                        <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="email" id="emailId" name="emailId" required />
                     </div>
                     <div className="mb-8 w-3/4">
                         <label htmlFor="password">Please enter a password: <br /></label>
-                        <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="password" id="password" name="password" ref={passRef} required />
+                        <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="password" id="password" name="password" required />
                     </div>
                     <div className='w-3/4 flex justify-between'>
                     <div className="mb-8 w-1/2 mr-8">
-                        <label htmlFor="designation">Your designation: (Enter N/A if not applicable)<br/></label>
-                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="designation" name="designation" ref={designationRef} required />
+                        <label htmlFor="currentTitle">Your current title: (Enter N/A if not applicable)<br/></label>
+                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="currentTitle" name="currentTitle" required />
                     </div>
                     <div className="mb-8 w-1/2">
-                        <label htmlFor="yoe">Total Years of experience: <br/></label>
-                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="yoe" name="yoe" ref={yoeRef} />
+                        <label htmlFor="linkedInUrl">Your linkedIn profile URL: <br/></label>
+                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="linkedInUrl" name="linkedInUrl" />
                     </div>
                     </div>
                     <div className="mb-8 w-3/4">
-                        <label htmlFor="companyName">Where do you currently work? (Company Name): (Enter N/A if not applicable) <br /></label>
-                        <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="text" id="companyName" name="companyName" ref={companyNameRef} required />
+                        <label htmlFor="currentCompany">Where do you currently work? (Company Name): (Enter N/A if not applicable) <br /></label>
+                        <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="text" id="currentCompany" name="currentCompany" required />
                     </div>
                     <div className="mb-8 w-3/4">
                         <label htmlFor="resumeUrl">Google drive link of your resume (Please make sure you set the access permissions such that anyone can view it): <br/></label>
-                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700" type="text" id="resumeUrl" name="resumeUrl" ref={resumeRef} required />
+                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700" type="text" id="resumeUrl" name="resumeUrl" required />
                     </div>
                     <div className="mb-8 w-3/4">
-                        <label htmlFor="bio">Please write a short (4-5 lines) bio about yourself: <br/></label>
+                        <label htmlFor="bio">Please write a short (2-3 lines) bio about yourself: <br/></label>
                         <textarea
                         className="mt-2 border-2 p-2 w-full rounded-md border-gray-300 focus:border-indigo-700"
                         id="bio"
                         name="bio"
-                        rows={10}
-                        ref={bioRef}
+                        rows={6}
                         ></textarea>
                     </div>
 

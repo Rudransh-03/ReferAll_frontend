@@ -4,7 +4,7 @@ const About = () => {
 
     useEffect(() => {
         const animatedDiv = document.getElementById('animatedDiv');
-    
+
         const isInViewport = (element: HTMLElement) => {
           const rect = element.getBoundingClientRect();
           return (

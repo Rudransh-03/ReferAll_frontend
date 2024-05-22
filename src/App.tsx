@@ -7,6 +7,8 @@ import SeekReferral from './components/SeekReferral';
 import ViewRequests from './components/ViewRequests';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import ReferralRequestPosts from './components/ReferralRequestPosts';
+import ReferralRequestDetails from './components/ReferralRequestDetails';
 
 function App() {
 
@@ -19,6 +21,8 @@ function App() {
         <Route path="view_requests/:id" element={<ViewRequests />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />
+        <Route path="refer" element={<ReferralRequestPosts />} />
+        <Route path="/:jobId/:postId" element={<ReferralRequestDetails />} />
       </Routes>
       <Footer />
     </BrowserRouter>
