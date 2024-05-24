@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { userState } from '../../store/user-slice';
+
 import { useNavigate } from 'react-router-dom';
+import { userState } from '../../../store/user-slice';
 
 interface ModalProps {
   showModal: boolean;

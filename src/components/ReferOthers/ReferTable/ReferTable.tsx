@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Modal from './Modal';
 
 const ReferTable = ({ data }: any) => {
@@ -29,7 +29,7 @@ const ReferTable = ({ data }: any) => {
   };
 
   return (
-    <div className="mt-12 w-full flex justify-center">
+    <div className="mt-4 w-full flex justify-center">
       <table className="w-10/12 border-collapse shadow-2xl">
         <thead>
           <tr className="text-xl">

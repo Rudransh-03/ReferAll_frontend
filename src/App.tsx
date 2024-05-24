@@ -7,7 +7,7 @@ import SeekReferral from './components/SeekReferral';
 import ViewRequests from './components/ViewRequests';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import ReferralRequestPosts from './components/ReferralRequestPosts';
+import ReferralRequestPosts from './components/ReferOthers/ReferralRequestPosts';
 
 function App() {
 

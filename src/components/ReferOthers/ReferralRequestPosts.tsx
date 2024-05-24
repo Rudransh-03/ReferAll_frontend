@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
-import { userState } from "../store/user-slice";
+import { userState } from "../../store/user-slice";
 import ReferTable from "./ReferTable/ReferTable";
+import Filters from "./Filters/Filters";
+
 
 
 const ReferralRequestPosts = () => {
@@ -21,7 +23,7 @@ const ReferralRequestPosts = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/posts/getPostsByCompany/google`, {
+            const response = await axios.get(`http://localhost:8080/posts/getPostsByCompany/${companyName}`, {
               headers: {
                 'Authorization': 'Bearer ' + jwtToken
               }
@@ -41,10 +43,13 @@ const ReferralRequestPosts = () => {
     return (
       <div className="w-screen">
         <div className="w-full mt-44">
-            <div className="w-full text-center text-6xl h-16 font-semibold">REFER PEOPLE TO <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">{companyName.toUpperCase()}</span></div>
-          
-          <div className="w-full flex">
+          <div className="w-full text-center text-6xl h-16 font-semibold">REFER PEOPLE TO <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">{companyName.toUpperCase()}</span></div>
+            
+          <div className="w-full flex justify-center">
+            <Filters />
+          </div>
 
+          <div className="w-full flex justify-center">
             <ReferTable data={data}/>
           </div>
           <button onClick={clickHandler}>Refresh Posts</button>
