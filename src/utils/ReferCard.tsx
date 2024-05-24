@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import ReferPostDetailsCard from "./ReferPostDetailsCard";
 import { useState } from "react";
 
 interface HomeCard{

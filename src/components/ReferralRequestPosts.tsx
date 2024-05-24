@@ -2,8 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
 import { userState } from "../store/user-slice";
-import ReferCard from "../utils/ReferCard";
-import ReferPostDetailsCard from "../utils/ReferPostDetailsCard";
+import ReferTable from "./ReferTable/ReferTable";
 
 
 const ReferralRequestPosts = () => {
@@ -46,26 +45,7 @@ const ReferralRequestPosts = () => {
           
           <div className="w-full flex">
 
-          <div className="ml-16 w-5/12">
-          {
-            data.map((post:any, index:number)=>(
-                <ReferCard key={index} 
-                jobTitle={post.jobTitle}
-                jobId={post.jobId} 
-                jobUrl={post.jobUrl}
-                referredStatus={post.referredStatus}
-                firstName={post.user.firstName}
-                lastName={post.user.lastName}
-                resumeUrl={post.user.resumeUrl}
-                linkedInUrl={post.user.linkedInUrl}
-                emailId={post.user.emailId}
-                currentCompany={post.user.currentCompany}
-                points={post.user.points}
-                postId={post.postId}
-                />
-            ))
-          }
-          </div>
+            <ReferTable data={data}/>
           </div>
           <button onClick={clickHandler}>Refresh Posts</button>
         </div>

@@ -36,7 +36,7 @@ export default {
         slideLeft: 'slideLeft 1s ease-in-out forwards',
         slideDown: 'slideDown 1s ease-in-out forwards',
         scaleUp: 'scaleUp 1s ease-in-out forwards',
-        scaleUp2: 'scaleUp 0.1s ease-in-out forwards',
+        scaleUp2: 'scaleUp 0.3s ease-in-out forwards',
         bounce: 'bounce 1s infinite',
       },
     },
