@@ -8,6 +8,11 @@ const StatusFilter = () => {
         const value = event.target.value;
         setSelectedValue(value);
         console.log(value);
+
+        if(value!=null && selectedValue.length > 0){
+            
+        }
+
     };
 
     return (
