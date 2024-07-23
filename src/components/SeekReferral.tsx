@@ -1,43 +1,40 @@
 import { FormEvent, useRef } from 'react';
 import exclamation from '../assets/exclamation.png';
-
-interface referralRequestBody{
-    companyName: string,
-    jobTitle: string,
-    jobId: string,
-    jobUrl: string,
-    summary: string | null,
-}
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 const SeekReferral = () => {
 
-    const companyNameRef = useRef<HTMLInputElement | null>(null);
-    const jobIdRef = useRef<HTMLInputElement | null>(null);
-    const jobTitleRef = useRef<HTMLInputElement | null>(null);
-    const jobUrlRef = useRef<HTMLInputElement | null>(null);
-    const summaryRef = useRef<HTMLTextAreaElement | null>(null);
+    const formRef = useRef<HTMLFormElement | null>(null);
+    const navigate = useNavigate();
+    const userId: string = useSelector((state: RootState) => state.user.userId);
+    const jwtToken: string = useSelector((state: RootState) => state.user.jwtToken);
 
-    function submitHandler(event: FormEvent<HTMLFormElement>){
+    async function submitHandler(event: FormEvent<HTMLFormElement>){
         event.preventDefault();
-        if(companyNameRef.current && jobIdRef.current && jobTitleRef.current && jobUrlRef.current){
-            const referralRequest: referralRequestBody = {
-                companyName: companyNameRef.current.value,
-                jobTitle: jobTitleRef.current.value,
-                jobId: jobIdRef.current.value,
-                jobUrl: jobUrlRef.current.value,
-                summary: summaryRef.current?.value || null
+        if (formRef.current) {
+            const formElements = new FormData(formRef.current);
+            const formData = Object.fromEntries(formElements.entries());
+            console.log(formData);
+
+            try {
+                const response = await axios.post(`http://localhost:8080/posts/addPost/${userId}`, formData,
+                {
+                    headers: {
+                        'Authorization': 'Bearer ' + jwtToken
+                    }
+                });
+                if(response.data === "You cannot create a request for the company you work!"){
+                    alert(response.data);
+                }
+                navigate("/");
+            } catch (error) {
+                console.error(error);
             }
 
-            console.log(referralRequest);
-
-            companyNameRef.current.value='';
-            jobIdRef.current.value='';
-            jobTitleRef.current.value='';
-            jobUrlRef.current.value='';
-            if(summaryRef.current != null) summaryRef.current.value = '';
-        }
-        else {
-            console.error('Some ref is null');
+            // formRef.current.reset();
         }
     }
 
@@ -48,26 +45,26 @@ const SeekReferral = () => {
                 <p className='pt-2 text-xl text-gray-600 w-full'>Please make sure to double check the spelling of each and every thing before you submit the form. Your request won't be visible to the referrers if you type the name of the company wrong</p>
             </div>
             <div className="mt-12 text-gray-600">
-                <form onSubmit={submitHandler}>
+                <form onSubmit={submitHandler} ref={formRef}>
                     <div className="flex">
                         <div className="mb-8 w-3/4">
                             <label htmlFor="companyName">Company name:<br /></label>
-                            <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="text" id="companyName" name="companyName" ref={companyNameRef} required />
+                            <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="text" id="companyName" name="companyName" required />
                         </div>
                     </div>
                     <div className='w-3/4 flex justify-between'>
                     <div className="mb-8 w-1/2 mr-8">
                         <label htmlFor="jobId">Job ID: <br/></label>
-                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="jobId" name="jobId" ref={jobIdRef} required />
+                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="jobId" name="jobId" required />
                     </div>
                     <div className="mb-8 w-1/2">
                         <label htmlFor="jobTitle">Job Title: <br/></label>
-                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="jobTitle" name="jobTitle" ref={jobTitleRef} required />
+                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="jobTitle" name="jobTitle" required />
                     </div>
                     </div>
                     <div className="mb-8 w-3/4">
                         <label htmlFor="jobUrl">Job URL: <br/></label>
-                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700" type="text" id="jobUrl" name="jobUrl" ref={jobUrlRef} required />
+                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700" type="text" id="jobUrl" name="jobUrl" required />
                     </div>
                     <div className="mb-8 w-3/4">
                         <label htmlFor="summary">Anything that you'd like to mention about yourself or the job: <br/></label>
@@ -76,7 +73,6 @@ const SeekReferral = () => {
                         id="summary"
                         name="summary"
                         rows={10}
-                        ref={summaryRef}
                         ></textarea>
                     </div>
 

@@ -29,7 +29,7 @@ const SignUp = () => {
                 // Handle login error
             });
 
-            // formRef.current.reset();
+            formRef.current.reset();
         }
     }
 

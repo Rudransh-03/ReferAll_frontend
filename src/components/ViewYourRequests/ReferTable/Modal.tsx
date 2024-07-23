@@ -1,31 +1,25 @@
 import axios from 'axios';
 import React from 'react';
 import { useSelector } from 'react-redux';
-
-import { useNavigate } from 'react-router-dom';
 import { userState } from '../../../store/user-slice';
 
-interface ModalProps {
-  showModal: boolean;
-  handleClose: () => void;
-  getStatusDisplay: () => any;
-  data: any;
-}
 
 const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }) => {
 
-  const navigate = useNavigate();
-
   const jwtToken : string = useSelector((state: { user:userState })=>state.user.jwtToken);
   const userId : string = useSelector((state: { user:userState })=>state.user.userId);
-  async function clickHandler(){
+  
+  async function handleReferredClick(){
+    console.log("clicked!");
     console.log(data.postId);
     
-    const response = await axios.get(`http://localhost:8080/changeIsReferredToInProgress/${data.postId}/${userId}`,{
+    const response = await axios.get(`http://localhost:8080/changeIsReferredToReferred/${data.postId}/${userId}`,{
         headers: {
             'Authorization': 'Bearer ' + jwtToken
         }
     });
+
+    console.log(response.data);
 
     window.location.reload();
     handleClose();
@@ -55,12 +49,12 @@ const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }
         <p><strong>Status:</strong> {getStatusDisplay(data.referredStatus)}</p>
         <p><strong>About the applicant:</strong> {data.user.bio}</p>
         <div className='flex'>
-            <button
-            className={`mr-4 mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 ${data.referredStatus !== 0 && "bg-gray-700 cursor-not-allowed hover:bg-gray-700"}`}
-            onClick={clickHandler}
-            disabled={data.referredStatus !== 0}
+        <button
+            className={`mr-4 mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 ${data.referredStatus !== 1 && "bg-gray-700 cursor-not-allowed"}`}
+            onClick={handleReferredClick}
+            disabled={data.referredStatus !== 1}
             >
-            Refer Candidate
+            I got referred!
             </button>
             
             <button

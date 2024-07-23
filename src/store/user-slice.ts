@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface userState {
+    userId: string,
     firstName: string;
     lastName: string;
     emailId: string;
@@ -29,6 +30,7 @@ if (savedTimestamp && (Date.now() - parseInt(savedTimestamp) > ONE_HOUR)) {
 }
 
 const initialState: userState = {
+    userId: savedUserData.userId || "",
     firstName: savedUserData.firstName || "",
     lastName: savedUserData.lastName || "",
     emailId: savedUserData.emailId || "",
@@ -48,6 +50,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setUserObject(state, action: PayloadAction<Partial<userState>>) {
+            state.userId = action.payload.userId || "";
             state.firstName = action.payload.firstName || state.firstName;
             state.lastName = action.payload.lastName || state.lastName;
             state.emailId = action.payload.emailId || state.emailId;
@@ -65,6 +68,7 @@ const userSlice = createSlice({
             const timestamp = Date.now().toString();
             localStorage.setItem("jwtToken", state.jwtToken);
             localStorage.setItem("userData", JSON.stringify({
+                userId: state.userId,
                 firstName: state.firstName,
                 lastName: state.lastName,
                 emailId: state.emailId,
@@ -80,6 +84,7 @@ const userSlice = createSlice({
             localStorage.setItem("userTimestamp", timestamp);
         },
         clearUserObject(state) {
+            state.userId = "";
             state.firstName = "";
             state.lastName = "";
             state.emailId = "";

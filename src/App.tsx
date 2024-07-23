@@ -4,10 +4,11 @@ import Home from './components/HomePage/Home'
 import Footer from './components/Footer'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SeekReferral from './components/SeekReferral';
-import ViewRequests from './components/ViewRequests';
+import ViewRequests from './components/ViewYourRequests/ViewRequests';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import ReferralRequestPosts from './components/ReferOthers/ReferralRequestPosts';
+import Profile from './components/Profile';
 
 function App() {
 
@@ -17,10 +18,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="seek_referral" element={<SeekReferral />} />
-        <Route path="view_requests/:id" element={<ViewRequests />} />
+        <Route path="view_requests" element={<ViewRequests />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />
         <Route path="refer" element={<ReferralRequestPosts />} />
+        <Route path='my_profile' element={<Profile/>} />
       </Routes>
       <Footer />
     </BrowserRouter>

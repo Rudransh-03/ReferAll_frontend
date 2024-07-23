@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export interface ReferPostState {
+export interface YourRequestsState {
     companyName: string | undefined;
     jobId: string | undefined;
     jobTitle: string | undefined;
@@ -10,17 +10,17 @@ export interface ReferPostState {
 }
 
 
-const initialState: ReferPostState[] = [];
+const initialState: YourRequestsState[] = [];
 
-const referPostsSlice = createSlice({
-    name: 'referPosts',
+const yourRequestsSlice = createSlice({
+    name: 'yourRequests',
     initialState,
     reducers: {
-        setReferPostObjects(state, action: PayloadAction<ReferPostState[]>) {
+        setYourRequestsObjects(state, action: PayloadAction<YourRequestsState[]>) {
             return [...action.payload];
         }
     }
 });
 
-export const referPostActions = referPostsSlice.actions;
-export default referPostsSlice;
+export const yourRequestsActions = yourRequestsSlice.actions;
+export default yourRequestsSlice;

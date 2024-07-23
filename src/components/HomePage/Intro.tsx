@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Intro = () => {
   return(
@@ -14,8 +15,8 @@ const Intro = () => {
             </div>
             <div className="mt-8 text-xl text-gray-500 animate-slideDown">Just put in a referral request and let our community do the magic 🚀🚀!</div>
             <div className="flex justify-center mt-12 text-xl text-white animate-slideDown">
-                <button className="mx-4 bg-indigo-800 p-4 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200">Refer Someone</button>
-                <button className="mx-4 bg-indigo-800 p-4 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200">Ask for Referral</button>
+                <button className="mx-4 bg-indigo-800 p-4 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200"><Link to="/refer">Refer Someone</Link></button>
+                <button className="mx-4 bg-indigo-800 p-4 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200"><Link to="/seek_referral">Ask for Referral</Link></button>
             </div>
         </div>
     </div>

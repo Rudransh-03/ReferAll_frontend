@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from './user-slice';
 import referPostsSlice from "./referRequests-slice";
+import yourRequestsSlice from "./yourRequests-slice";
 
 const store = configureStore({
-    reducer: { user: userSlice.reducer, referPosts: referPostsSlice.reducer }
+    reducer: { user: userSlice.reducer, referPosts: referPostsSlice.reducer, yourRequests: yourRequestsSlice.reducer }
 });
 
 export default store;

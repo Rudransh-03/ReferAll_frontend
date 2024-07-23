@@ -14,7 +14,7 @@ const Header = () => {
         <Link className={`hover:cursor-pointer hover:underline underline-offset-4 ${(path === 'seek_referral') ? 'underline' : ''}`} to="/seek_referral">Seek A Referral</Link>
         <Link className={`hover:cursor-pointer hover:underline underline-offset-4 ${(path === 'view_requests') ? 'underline' : ''}`} to="/view_requests">View Your Requests</Link>
         <Link className={`hover:cursor-pointer hover:underline underline-offset-4 ${(path === 'refer') ? 'underline' : ''}`} to="/refer">Refer People</Link>
-        {userFirstName.length > 0 && <Link className={`hover:cursor-pointer hover:underline underline-offset-4 ${(path === 'my_profile') ? 'underline' : ''}`} to="/my_profile">Profile</Link>}
+        {userFirstName.length > 0 && <Link className={`hover:cursor-pointer hover:underline underline-offset-4 ${(path === 'my_profile') ? 'underline' : ''}`} to="/my_profile">My Profile</Link>}
         {userFirstName.length === 0 && <Link className={`hover:cursor-pointer hover:underline underline-offset-4 ${(path === 'login') ? 'underline' : ''}`} to="/login">Login/Sign-Up</Link>}
       </div>
     </div>
