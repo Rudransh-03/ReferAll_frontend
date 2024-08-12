@@ -19,7 +19,7 @@ const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }
   const jwtToken : string = useSelector((state: { user:userState })=>state.user.jwtToken);
   const userId : string = useSelector((state: { user:userState })=>state.user.userId);
   async function clickHandler(){
-    console.log(data.postId);
+    // console.log(data.postId);
     
     const response = await axios.get(`http://localhost:8080/changeIsReferredToInProgress/${data.postId}/${userId}`,{
         headers: {

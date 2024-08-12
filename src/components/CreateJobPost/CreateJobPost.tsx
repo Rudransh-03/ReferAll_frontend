@@ -1,15 +1,16 @@
-import { FormEvent, useRef } from 'react';
-import exclamation from '../assets/exclamation.png';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { FormEvent, useRef } from 'react'
+import exclamation from '../../assets/exclamation.png';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../store';
+import axios from 'axios';
 
-const SeekReferral = () => {
+const CreateJobPost = () => {
 
     const formRef = useRef<HTMLFormElement | null>(null);
     const navigate = useNavigate();
     const userId: string = useSelector((state: RootState) => state.user.userId);
+    const userCompanyName: string = useSelector((state: RootState)=> state.user.currentCompany);
     const jwtToken: string = useSelector((state: RootState) => state.user.jwtToken);
 
     async function submitHandler(event: FormEvent<HTMLFormElement>){
@@ -20,7 +21,7 @@ const SeekReferral = () => {
             console.log(formData);
 
             try {
-                const response = await axios.post(`http://localhost:8080/posts/addPost/${userId}`, formData,
+                const response = await axios.post(`http://localhost:8080/referPosts/createReferPost/${userId}`, formData,
                 {
                     headers: {
                         'Authorization': 'Bearer ' + jwtToken
@@ -29,12 +30,12 @@ const SeekReferral = () => {
                 if(response.data === "You cannot create a request for the company you work!"){
                     alert(response.data);
                 }
-                navigate("/");
+                // navigate("/");
             } catch (error) {
                 console.error(error);
             }
 
-            // formRef.current.reset();
+           // formRef.current.reset();
         }
     }
 
@@ -46,11 +47,17 @@ const SeekReferral = () => {
             </div>
             <div className="mt-12 text-gray-600">
                 <form onSubmit={submitHandler} ref={formRef}>
-                    <div className="flex">
-                        <div className="mb-8 w-3/4">
-                            <label htmlFor="companyName">Company name:<br /></label>
-                            <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700' type="text" id="companyName" name="companyName" required />
-                        </div>
+                    <div className='w-3/4 flex justify-between'>
+                    <div className="mb-8 w-1/2 mr-8">
+                    <div className='flex'>
+                        <label htmlFor="companyName">Company name:</label>
+                        <div>&nbsp;{userCompanyName}</div>
+                    </div>
+                    </div>
+                    <div className="mb-8 w-1/2 flex">
+                        <label htmlFor="yoeRequired">Years of Experience Required: <br/></label>
+                        <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"  type="text" id="yoeRequired" name="yoeRequired" required />
+                    </div>
                     </div>
                     <div className='w-3/4 flex justify-between'>
                     <div className="mb-8 w-1/2 mr-8">
@@ -67,11 +74,11 @@ const SeekReferral = () => {
                         <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700" type="text" id="jobUrl" name="jobUrl" required />
                     </div>
                     <div className="mb-8 w-3/4">
-                        <label htmlFor="summary">Anything that you'd like to mention about yourself or the job: <br/></label>
+                        <label htmlFor="jobDescription">Job description: <br/></label>
                         <textarea
                         className="mt-2 border-2 p-2 w-full rounded-md border-gray-300 focus:border-indigo-700"
-                        id="summary"
-                        name="summary"
+                        id="jobDescription"
+                        name="jobDescription"
                         rows={10}
                         ></textarea>
                     </div>
@@ -85,4 +92,4 @@ const SeekReferral = () => {
   )
 }
 
-export default SeekReferral
+export default CreateJobPost
