@@ -31,7 +31,6 @@ const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }
 
     window.location.reload();
     handleClose();
-    
   }
 
   if (!showModal) return null;
