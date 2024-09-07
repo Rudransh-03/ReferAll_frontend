@@ -71,13 +71,13 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg w-3/4 max-w-3xl">
+          <div className="bg-white border-indigo-700 border-2 p-6 rounded-lg w-3/4 max-w-3xl">
             <h2 className="text-xl font-semibold mb-4">Applicants</h2>
             <ul>
               {applicants.length > 0 ? (
                 applicants.map((applicant, index) => (
                   <li key={index} className="mb-2">
-                    {applicant.firstName} {applicant.lastName} - {applicant.emailId}
+                    {applicant.firstName} {applicant.lastName} - {applicant.emailId} (Resume Url: {applicant.resumeUrl})
                   </li>
                 ))
               ) : (

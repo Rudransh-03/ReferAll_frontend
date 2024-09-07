@@ -60,11 +60,13 @@ const Profile = () => {
                 ...formData
             }
             dispatch(userActions.setUserObject(newUserData));
-
-
-
             formRef.current.reset();
         }
+    }
+
+    function buttonClickHandler(){
+        dispatch(userActions.clearUserObject());
+        navigate("/");
     }
 
     return (
@@ -172,9 +174,14 @@ const Profile = () => {
                                 ></textarea>
                             </div>
 
+                            <div className='flex'>
                             <button type="submit" className="mb-8 text-white mx-4 bg-indigo-800 p-3 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200">
                                 Save Details
                             </button>
+                            <button type="submit" className="mb-8 text-white mx-4 bg-indigo-800 p-3 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200" onClick={buttonClickHandler}>
+                                Logout
+                            </button>
+                            </div>
                         </form>
                     </div>
                     <div className='w-2/6 -ml-24 -mt-20'>

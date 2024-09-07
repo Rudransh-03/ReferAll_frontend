@@ -27,6 +27,8 @@ const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }
         }
     });
 
+    console.log(response.data);
+
     window.location.reload();
     handleClose();
     
