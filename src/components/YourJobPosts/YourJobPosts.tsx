@@ -13,7 +13,7 @@ interface User {
   currentTitle: string;
   bio: string;
   contactNumber: string;
-  resumeUrl: string
+  resumeUrl: string;
 }
 
 interface JobPost {
@@ -26,7 +26,7 @@ interface JobPost {
   jobDescription: string;
   yoeRequired: string;
   creator: User;
-  applicants: User[]
+  applicants: User[];
 }
 
 const YourJobPosts: React.FC = () => {
@@ -34,12 +34,13 @@ const YourJobPosts: React.FC = () => {
   const jwtToken: string = useSelector((state: RootState) => state.user.jwtToken);
   const userId: string = useSelector((state: RootState) => state.user.userId);
 
+  // Fetch the job posts data for the current user
   useEffect(() => {
     const fetchJobPosts = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/referPosts/getReferPostsByUserId/${userId}`, {
           headers: {
-            'Authorization': `Bearer ${jwtToken}`,
+            Authorization: `Bearer ${jwtToken}`,
           },
         });
         console.log(response.data);
@@ -52,6 +53,16 @@ const YourJobPosts: React.FC = () => {
     fetchJobPosts();
   }, [jwtToken, userId]);
 
+  // Handle job post deletion success (remove the post from the state)
+  const handleDeleteSuccess = (referPostId: string) => {
+    setJobPosts((prevJobPosts) => {
+      if (prevJobPosts) {
+        return prevJobPosts.filter((post) => post.referPostId !== referPostId);
+      }
+      return prevJobPosts;
+    });
+  };
+
   if (!jobPosts) {
     return <div className='mt-36'>Loading...</div>;
   }
@@ -63,6 +74,7 @@ const YourJobPosts: React.FC = () => {
         {jobPosts.map((post) => (
           <YourJobPostsCard
             key={post.jobId}
+            referPostId={post.referPostId}
             creationDate={post.creationDate}
             companyName={post.companyName}
             jobId={post.jobId}
@@ -71,12 +83,13 @@ const YourJobPosts: React.FC = () => {
             jobUrl={post.jobUrl}
             yoeRequired={post.yoeRequired}
             applicants={post.applicants}
+            jwtToken={jwtToken} // Pass JWT token to child for authorization
+            onDeleteSuccess={handleDeleteSuccess} // Pass delete success handler to child
           />
         ))}
       </div>
     </div>
   );
-  
 };
 
 export default YourJobPosts;

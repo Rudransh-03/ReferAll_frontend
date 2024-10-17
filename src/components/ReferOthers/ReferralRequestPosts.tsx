@@ -28,6 +28,7 @@ const ReferralRequestPosts = () => {
                         'Authorization': 'Bearer ' + jwtToken
                     }
                 });
+                // if(response.data.length == 0) console.log("hi");
                 dispatch(referPostActions.setReferPostObjects(response.data));
             } catch (error) {
                 console.error(error);
@@ -70,7 +71,7 @@ const ReferralRequestPosts = () => {
                 {!arePostsNull && <div className="w-full flex justify-center">
                     <ReferTable data={data}/>
                 </div>}
-                <button className="ml-36 px-4 py-2 shadow-indigo-600 text-white rounded-lg bg-indigo-600 hover:bg-indigo-800 hover:cursor-pointer" onClick={clickHandler}>Refresh Posts</button>
+                {/* <button className="ml-36 px-4 py-2 shadow-indigo-600 text-white rounded-lg bg-indigo-600 hover:bg-indigo-800 hover:cursor-pointer" onClick={clickHandler}>Refresh Posts</button> */}
                 {!arePostsNull && showPagination && <div className="w-full flex justify-center"><Pagination postsCount={postsCount} pageNumber={pageNumber} setPageNumber={setPageNumber}/></div>}
                 
             </div>
