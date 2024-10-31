@@ -29,12 +29,12 @@ const SeekReferral = () => {
                 if(response.data === "You cannot create a request for the company you work!"){
                     alert(response.data);
                 }
-                // navigate("/");
+                navigate("/view_requests");
             } catch (error) {
                 console.error(error);
             }
 
-            // formRef.current.reset();
+            formRef.current.reset();
         }
     }
 

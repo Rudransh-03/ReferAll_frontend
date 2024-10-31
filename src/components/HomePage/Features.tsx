@@ -34,7 +34,7 @@ const Features = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-black text-white">
       <div id="animatedText" className="mt-20 flex justify-center text-6xl font-semibold opacity-0">
         <p>How does it&nbsp;</p>
         <p className="bg-gradient-to-r from-indigo-800 to-violet-500 inline-block text-transparent bg-clip-text"> work?</p>
@@ -55,7 +55,7 @@ const Features = () => {
           img={points}
           content={"Earn 2 points for every successful referral that you give and 1 point when someone refers you. Accumulate these points to enhance your profile visibility. Profiles with higher points rank first, increasing your chances of receiving referrals. So why wait? Start referring every qualified candidate today and boost your networking prowess!"}
         />
-        </div>
+      </div>
     </div>
   );
 };

@@ -68,9 +68,9 @@ const YourJobPosts: React.FC = () => {
   }
 
   return (
-    <div className='mt-36'>
-      <h1 className='text-center'>Your Job Posts</h1>
-      <div className='flex flex-col items-center'>
+    <div className='mt-40'>
+      <div className="w-full text-center text-5xl h-16 font-semibold">YOUR <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">JOB POSTS</span></div>
+      <div className='mt-12 flex flex-col items-center'>
         {jobPosts.map((post) => (
           <YourJobPostsCard
             key={post.jobId}

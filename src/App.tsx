@@ -14,25 +14,29 @@ import ViewJobPosts from './components/ViewJobPosts/ViewJobPosts';
 import YourJobPosts from './components/YourJobPosts/YourJobPosts';
 
 function App() {
-
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="seek_referral" element={<SeekReferral />} />
-        <Route path="view_requests" element={<ViewRequests />} />
-        <Route path="login" element={<Login />} />
-        <Route path="sign-up" element={<SignUp />} />
-        <Route path="refer" element={<ReferralRequestPosts />} />
-        <Route path='my_profile' element={<Profile/>} />
-        <Route path='create_job_post' element={<CreateJobPost/>} />
-        <Route path='view_job_posts' element={<ViewJobPosts/>} />
-        <Route path='your_job_posts' element={<YourJobPosts/>} />
-      </Routes>
-      <Footer />
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="seek_referral" element={<SeekReferral />} />
+            <Route path="view_requests" element={<ViewRequests />} />
+            <Route path="login" element={<Login />} />
+            <Route path="sign-up" element={<SignUp />} />
+            <Route path="refer" element={<ReferralRequestPosts />} />
+            <Route path='my_profile' element={<Profile />} />
+            <Route path='create_job_post' element={<CreateJobPost />} />
+            <Route path='view_job_posts' element={<ViewJobPosts />} />
+            <Route path='your_job_posts' element={<YourJobPosts />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </BrowserRouter>
-  )
+  );
 }
+
 
 export default App

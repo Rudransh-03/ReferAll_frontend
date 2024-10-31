@@ -30,12 +30,12 @@ const CreateJobPost = () => {
                 if(response.data === "You cannot create a request for the company you work!"){
                     alert(response.data);
                 }
-                // navigate("/");
+                navigate("/your_job_posts");
             } catch (error) {
                 console.error(error);
             }
 
-           // formRef.current.reset();
+           formRef.current.reset();
         }
     }
 

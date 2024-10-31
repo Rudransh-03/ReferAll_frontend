@@ -6,7 +6,7 @@ import Intro from "./Intro"
 
 const Home = () => {
   return (
-    <div className="pb-8">
+    <div className="pb-8 bg-black">
         <Intro />
         <About />
         <Features />

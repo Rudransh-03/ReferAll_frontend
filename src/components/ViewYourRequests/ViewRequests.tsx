@@ -44,7 +44,7 @@ const ReferralRequestPosts = () => {
     return (
         <div className="w-screen">
             <div className="w-full mt-44 mb-16">
-                <div className="w-full text-center text-6xl h-16 font-semibold mb-8">YOUR <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">POSTS</span></div>
+                <div className="w-full text-center text-5xl h-16 font-semibold mb-8">YOUR <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">REFERRAL REQUESTS</span></div>
                 <div className="w-full flex justify-center">
                     {/* <Filters setArePostsNull={setArePostsNull} setShowPagination={setShowPagination} setPageNumber={setPageNumber}/> */}
                 </div>
