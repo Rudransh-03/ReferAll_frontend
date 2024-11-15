@@ -7,6 +7,7 @@ export interface YourRequestsState {
     jobUrl: string | undefined;
     referredStatus: number | undefined;
     user: any | undefined;
+    referrer: any
 }
 
 

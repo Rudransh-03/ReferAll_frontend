@@ -62,9 +62,9 @@ const ReferralRequestPosts = () => {
 
     return (
         <div className="w-screen">
-            <div className="w-full mt-44">
-                <div className="w-full text-center text-5xl h-16 font-semibold">REFER PEOPLE TO <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">{companyName.toUpperCase()}</span></div>
-                <div className="w-full flex justify-center">
+            <div className="w-full mt-28 md:mt-28 lg:mt-40">
+                <div className="w-full text-center text-4xl md:text-5xl md:mb-8 mb-4 md:mb-0 md:text-5xl h-16 font-semibold">REFER PEOPLE TO <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">{companyName.toUpperCase()}</span></div>
+                <div className="md:mx-12 mx-8 flex justify-center">
                     <Filters setArePostsNull={setArePostsNull} setShowPagination={setShowPagination} setPageNumber={setPageNumber}/>
                 </div>
                 {arePostsNull && <div className="mt-4 mb-4 text-2xl font-seimibold text-indigo-700 w-full flex justify-center">No posts found!!</div>}

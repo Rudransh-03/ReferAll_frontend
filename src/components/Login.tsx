@@ -38,18 +38,35 @@ const Login = () => {
                 </div>
                 <div className="flex justify-center w-full mt-8">
                     <form ref={formRef} onSubmit={submitHandler} className="w-full">
-                        <div className="mb-8 w-full mr-8 flex justify-center align-center items-center">
-                            <label htmlFor="emailId" className="w-1/12">Email&nbsp;&nbsp;Id: </label>
-                            <input className="mt-2 border-2 w-2/4 p-2 rounded-md border-gray-300 focus:border-indigo-700" type="email" id="emailId" name="emailId" required />
+                        <div className="mb-8 w-full mr-8 flex justify-center items-center">
+                            {/* <label htmlFor="emailId" className="w-1/12 hidden md:block">Email&nbsp;&nbsp;Id: </label> */}
+                            <input 
+                                className="mt-2 border-2 w-2/4 p-2 rounded-md border-gray-300 focus:border-indigo-700" 
+                                type="email" 
+                                id="emailId" 
+                                name="emailId" 
+                                required 
+                                placeholder="Email Id" 
+                            />
                         </div>
-                        <div className="mb-8 w-full mr-4 flex justify-center align-center items-center">
-                            <label htmlFor="password" className="w-1/12">Password: </label>
-                            <input className="mt-2 border-2 w-2/4 p-2 rounded-md border-gray-300 focus:border-indigo-700" type="password" id="password" name="password" required />
+                        <div className="mb-8 w-full mr-4 flex justify-center items-center">
+                            {/* <label htmlFor="password" className="w-1/12 hidden md:block">Password: </label> */}
+                            <input 
+                                className="mt-2 border-2 w-2/4 p-2 rounded-md border-gray-300 focus:border-indigo-700" 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                required 
+                                placeholder="Password" 
+                            />
                         </div>
-                        <div className="w-full flex justify-center align-center items-center">
-                            <button type="submit" className="w-2/12 mb-8 text-white mx-4 bg-indigo-800 p-3 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200">
-                                Login
-                            </button>
+                        <div className="w-full flex justify-center items-center">
+                        <button type="submit"
+                                className="w-auto px-8 mb-8 text-white mx-4 bg-indigo-800 p-3 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200 flex justify-center items-center"
+                        >
+                            Login
+                        </button>
+
                         </div>
                     </form>
                 </div>

@@ -35,11 +35,13 @@ const Features = () => {
 
   return (
     <div className="bg-black text-white">
-      <div id="animatedText" className="mt-20 flex justify-center text-6xl font-semibold opacity-0">
+      <div id="animatedText" className="mt-20 flex justify-center text-5xl md:text-6xl font-semibold opacity-0">
         <p>How does it&nbsp;</p>
         <p className="bg-gradient-to-r from-indigo-800 to-violet-500 inline-block text-transparent bg-clip-text"> work?</p>
       </div>
-      <div className="flex justify-around mt-16">
+
+      {/* Card Container */}
+      <div className="flex flex-col lg:flex-row justify-around items-center w-full lg:items-stretch lg:space-x-8 mt-16 space-y-8 lg:space-y-0">
         <Card
           title={"Refer Others"}
           img={handshake}

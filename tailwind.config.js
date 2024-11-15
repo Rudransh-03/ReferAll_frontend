@@ -29,12 +29,17 @@ export default {
           '0%, 100%': { transform: 'translateY(-10%)', animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' },
           '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' },
         },
+        slideDown2: {
+          '0%': { transform: 'translateY(30%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        }
       },
       animation: {
         slideRight: 'slideRight 1s ease-in-out forwards',
         slideRight2: 'slideRight 0.5s ease-in-out forwards',
         slideLeft: 'slideLeft 1s ease-in-out forwards',
         slideDown: 'slideDown 1s ease-in-out forwards',
+        slideDown2: 'slideDown2 0.5s ease-in-out',
         scaleUp: 'scaleUp 1s ease-in-out forwards',
         scaleUp2: 'scaleUp 0.3s ease-in-out forwards',
         bounce: 'bounce 1s infinite',

@@ -13,7 +13,6 @@ import CreateJobPost from './components/CreateJobPost/CreateJobPost';
 import ViewJobPosts from './components/ViewJobPosts/ViewJobPosts';
 import YourJobPosts from './components/YourJobPosts/YourJobPosts';
 import PeopleYouReferred from './components/YourReferrals/PeopleYouReferred';
-import ViewAppliedJobPosts from './components/ViewAppliedJobPosts/ViewAppliedJobPosts';
 
 function App() {
   return (
@@ -33,7 +32,6 @@ function App() {
             <Route path='create_job_post' element={<CreateJobPost />} />
             <Route path='view_job_posts' element={<ViewJobPosts />} />
             <Route path='your_job_posts' element={<YourJobPosts />} />
-            <Route path='your_applications' element={<ViewAppliedJobPosts />} />
           </Routes>
         </div>
         <Footer />

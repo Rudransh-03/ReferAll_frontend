@@ -32,7 +32,7 @@ const FunFact = () => {
         <img src={tick} className="w-8 h-8 mt-1" alt="tick" />
         <span className="mt-1 ml-2 text-xl font-semibold">Fun Fact(s)</span>
       </div>
-      <div className="relative overflow-hidden h-8 mt-2">
+      <div className="relative overflow-hidden h-12 md:h-8 mt-2">
         <div className={`absolute transition-transform duration-1000 transform ${isSlidingOut ? 'translate-x-[-100%]' : 'translate-x-[2%]'}`}>
           <div className="h-8">{funFacts[currentIndex]}</div>
         </div>

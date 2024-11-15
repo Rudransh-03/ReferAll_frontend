@@ -5,7 +5,7 @@ import { RootState } from "../../store/index";
 import ReferTable from "./ReferTable/ReferTable";
 import { YourRequestsState, yourRequestsActions } from "../../store/yourRequests-slice";
 
-const ReferralRequestPosts = () => {
+const PeopleYouReferred = () => {
     const companyName: string = useSelector((state: RootState) => state.user.currentCompany);
     const jwtToken: string = useSelector((state: RootState) => state.user.jwtToken);
     const data: YourRequestsState[] = useSelector((state: RootState) => state.yourRequests);
@@ -22,7 +22,7 @@ const ReferralRequestPosts = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/posts/getPostsByUser/${userId}`, {
+                const response = await axios.get(`http://localhost:8080/posts/getPostsReferredByUser/${userId}`, {
                     headers: {
                         'Authorization': 'Bearer ' + jwtToken
                     }
@@ -44,7 +44,7 @@ const ReferralRequestPosts = () => {
     return (
         <div className="w-screen">
             <div className="w-full mt-28 md:mt-28 lg:mt-40 mb-16">
-                <div className="w-full text-center text-4xl md:text-5xl h-16 font-semibold mb-4 md:mb-8">YOUR <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">REFERRAL REQUESTS</span></div>
+                <div className="w-full text-center text-4xl md:text-5xl h-16 font-semibold mb-4 md:mb-8">REQUESTS REFERRED <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">BY YOU</span></div>
                 <div className="w-full flex justify-center">
                     {/* <Filters setArePostsNull={setArePostsNull} setShowPagination={setShowPagination} setPageNumber={setPageNumber}/> */}
                 </div>
@@ -60,4 +60,4 @@ const ReferralRequestPosts = () => {
     );
 };
 
-export default ReferralRequestPosts;
+export default PeopleYouReferred;
