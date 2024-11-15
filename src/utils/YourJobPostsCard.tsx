@@ -74,7 +74,6 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
     // Send statusUpdates to backend when modal closes
     if (Object.keys(statusUpdates).length > 0) {
       try {
-        console.log(statusUpdates);
         await axios.post(
           `http://localhost:8080/applicant/updateApplicantsStatus`,
           statusUpdates,
@@ -182,7 +181,7 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
                 </thead>
                 <tbody>
                   {applicantList.length > 0 ? (
-                    applicantList.map((applicant, index) => (
+                    applicantList.map((applicant:any, index:any) => (
                       <tr key={index} className="border-t border-b">
                         <td className="px-4 py-2 text-center">{applicant.user.firstName}</td>
                         <td className="px-4 py-2 text-center">{applicant.user.lastName}</td>
@@ -267,5 +266,6 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
     </>
   );
 };
+
 
 export default YourJobPostsCard;

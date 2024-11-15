@@ -52,6 +52,7 @@ const YourJobPosts: React.FC = () => {
             Authorization: `Bearer ${jwtToken}`,
           },
         });
+        console.log("hello");
         console.log(response.data);
         // console.log(response.data[0].applicants);
         setApplicants(response.data[0].applicants);
@@ -75,6 +76,7 @@ const YourJobPosts: React.FC = () => {
     });
   };
 
+  console.log("jobPosts");
   console.log(jobPosts);
 
   if (!jobPosts) {
