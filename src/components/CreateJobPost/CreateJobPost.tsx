@@ -45,7 +45,7 @@ const CreateJobPost = () => {
                 <div className="mt-20 md:mt-4 w-full md:w-3/4 p-2 rounded-lg flex border-2 border-indigo-700 py-4 animate-bounce">
                     <img src={exclamation} className="w-12 h-12" />
                     <p className="pt-2 text-base md:text-xl text-gray-600 w-full">
-                        A simple form to get you your desired candidates :)
+                        A simple form to get you your desired candidates :) (Please fill all the fields so that candidates may get a clear idea about the job)
                     </p>
                 </div>
                 <div className="mt-8 md:mt-12 text-gray-600 w-full md:w-3/4">
@@ -117,6 +117,7 @@ const CreateJobPost = () => {
                                 id="jobDescription"
                                 name="jobDescription"
                                 rows={10}
+                                required
                             ></textarea>
                         </div>
     

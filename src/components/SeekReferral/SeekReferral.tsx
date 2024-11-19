@@ -41,7 +41,7 @@ const SeekReferral = () => {
             <div className="w-full mt-24 lg:mt-40 rounded-lg flex items-center border-2 border-indigo-700 p-4 mb-8 animate-bounce">
                 <img src={exclamation} className="w-8 h-8 mr-3" />
                 <p className="text-sm md:text-md lg:text-xl text-gray-600">
-                    Please make sure to double check the spelling of each and every thing before you submit the form. Your request won't be visible to the referrers if you type the name of the company wrong.
+                    All fields are mandatory. Please make sure to double check the spelling of each and every thing before you submit the form. Your request won't be visible to the referrers if you type the name of the company wrong.
                 </p>
             </div>
             <div className="mt-8 md:mt-12 text-gray-600">
@@ -95,6 +95,7 @@ const SeekReferral = () => {
                             id="summary" 
                             name="summary" 
                             rows={5} 
+                            required
                         ></textarea>
                     </div>
                     <div className="flex justify-center md:justify-start">

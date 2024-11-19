@@ -113,86 +113,86 @@ const SignUp = () => {
     }
 
     return (
-        <div className='mt-40 w-full ml-20'>
-            <div className='w-3/4 p-2 rounded-lg flex border-2 border-indigo-700 py-4 pr-4 animate-bounce'>
+        <div className='mt-28 md:mt-40 w-5/6 md:ml-20 ml-8 -mr-20'>
+            <div className='md:w-3/4 md:p-2 rounded-lg flex border-2 border-indigo-700 md:py-4 py-1 pr-2 md:pr-4 animate-bounce'>
                 <img src={exclamation} className='w-12 h-12' />
-                <p className='pt-2 text-xl text-gray-600 w-full'>Please make sure to enter the correct details. These details will be sent to the referrers when you put in a referral request.</p>
+                <p className='pt-2 text-sm md:text-xl text-gray-600 w-full'>All fields are necessary. Please make sure to enter the correct details. These details will be sent to the referrers when you put in a referral request.</p>
             </div>
             <div className='mt-12 flex'>
-                <div className="w-4/6 text-gray-600">
+                <div className="w-full md:w-5/6 text-gray-600">
                     <form ref={formRef} onSubmit={submitHandler}>
-                        <div className='w-3/4 flex justify-between'>
-                            <div className="mb-8 w-1/2 mr-8">
+                        <div className='md:w-3/4 flex flex-wrap md:flex-nowrap justify-between'>
+                            <div className="mb-8 w-full md:w-1/2 md:mr-8">
                                 <label htmlFor="firstName">First Name: <br /></label>
                                 <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"
                                     type="text" id="firstName" name="firstName" required
                                     onBlur={validateForm} />
                                 {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
                             </div>
-                            <div className="mb-8 w-1/2">
+                            <div className="mb-8 w-full md:w-1/2">
                                 <label htmlFor="lastName">Last Name: <br /></label>
                                 <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"
                                     type="text" id="lastName" name="lastName" onBlur={validateForm} />
                             </div>
                         </div>
-                        <div className="mb-8 w-3/4">
+                        <div className="mb-8 w-full md:w-3/4">
                             <label htmlFor="contactNumber">Phone Number (With Country Code): <br /></label>
                             <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700'
                                 type="tel" id="contactNumber" name="contactNumber" required onBlur={validateForm} />
                             {errors.contactNumber && <p className="text-red-500 text-sm">{errors.contactNumber}</p>}
                         </div>
-                        <div className="mb-8 w-3/4">
+                        <div className="mb-8 w-full md:w-3/4">
                             <label htmlFor="emailId">Your Email Id: <br /></label>
                             <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700'
                                 type="email" id="emailId" name="emailId" required onBlur={validateForm} />
                             {errors.emailId && <p className="text-red-500 text-sm">{errors.emailId}</p>}
                         </div>
-                        <div className="mb-8 w-3/4">
+                        <div className="mb-8 w-full md:w-3/4">
                             <label htmlFor="password">Please enter a password: <br /></label>
                             <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700'
                                 type="password" id="password" name="password" required onBlur={validateForm} />
                             {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
                         </div>
-                        <div className="mb-8 w-3/4">
+                        <div className="mb-8 w-full md:w-3/4">
                             <label htmlFor="confirmPassword">Confirm password: <br /></label>
                             <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700'
                                 type="password" id="confirmPassword" name="confirmPassword" required onBlur={validateForm} />
                             {errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword}</p>}
                         </div>
-                        <div className='w-3/4 flex justify-between'>
-                            <div className="mb-8 w-1/2 mr-8">
+                        <div className='w-full md:w-3/4 flex flex-wrap md:flex-nowrap justify-between'>
+                            <div className="mb-8 w-full md:w-1/2 md:mr-8">
                                 <label htmlFor="currentTitle">Your current title: (Enter N/A if not applicable)<br /></label>
                                 <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"
                                     type="text" id="currentTitle" name="currentTitle" required onBlur={validateForm} />
                                 {errors.currentTitle && <p className="text-red-500 text-sm">{errors.currentTitle}</p>}
                             </div>
-                            <div className="mb-8 w-1/2">
+                            <div className="mb-8 w-full md:w-1/2">
                                 <label htmlFor="linkedInUrl">Your linkedIn profile URL: <br /></label>
                                 <input className="mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700"
                                     type="text" id="linkedInUrl" name="linkedInUrl" />
                             </div>
                         </div>
-                        <div className="mb-8 w-3/4">
+                        <div className="mb-8 w-full md:w-3/4">
                             <label htmlFor="currentCompany">Where do you currently work? (Company Name): (Enter N/A if not applicable) <br /></label>
                             <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700'
                                 type="text" id="currentCompany" name="currentCompany" required onBlur={validateForm} />
                             {errors.currentCompany && <p className="text-red-500 text-sm">{errors.currentCompany}</p>}
                         </div>
-                        <div className="mb-8 w-3/4">
+                        <div className="mb-8 w-full md:w-3/4">
                             <label htmlFor="resumeUrl">Upload your resume URL: <br /></label>
                             <input className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700'
                                 type="url" id="resumeUrl" name="resumeUrl" required onBlur={validateForm} />
                             {errors.resumeUrl && <p className="text-red-500 text-sm">{errors.resumeUrl}</p>}
                         </div>
-                        <div className="mb-8 w-3/4">
+                        <div className="mb-8 w-full md:w-3/4">
                             <label htmlFor="bio">A short bio about you: <br /></label>
                             <textarea className='mt-2 border-2 w-full p-2 rounded-md border-gray-300 focus:border-indigo-700'
                                 id="bio" name="bio" required onBlur={validateForm}></textarea>
                             {errors.bio && <p className="text-red-500 text-sm">{errors.bio}</p>}
                         </div>
-                        <div className="mb-8 w-3/4 text-center">
+                        <div className="mb-8 w-full md:w-3/4 text-center">
                             <button type="submit" disabled={!isSubmitEnabled}
-                                className={`p-2 rounded-md text-white ${isSubmitEnabled ? 'bg-indigo-700' : 'bg-gray-400'}`}>
+                                className={`p-2 rounded-md text-white ${isSubmitEnabled ? 'bg-indigo-700' : 'bg-gray-400 hover:cursor-not-allowed'}`}>
                                 Submit
                             </button>
                         </div>
@@ -200,7 +200,7 @@ const SignUp = () => {
                 </div>
             </div>
         </div>
-    );
+    );    
 }
 
 export default SignUp;

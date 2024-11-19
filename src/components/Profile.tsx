@@ -35,29 +35,40 @@ const Profile = () => {
     async function submitHandler(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        if (formRef.current) {
-            const formElements = new FormData(formRef.current);
-            const formData = Object.fromEntries(formElements.entries());
+        const form = formRef.current;
+        if(form!=null && (form.firstName.value.length == 0 || form.lastName.value == 0 || 
+            form.contactNumber.value.length == 0 || form.emailId.value.length == 0 ||
+            form.currentTitle.value.length == 0 || form.linkedInUrl.value.length == 0
+            || form.currentCompany.value.length == 0 || form.resumeUrl.value.length == 0 ||
+            form.bio.value.length == 0)){
+                alert("All the fields are mandatory. Please fill all the fields");
+        }
 
-            await axios.put(`http://localhost:8080/users/updateUser/${user.userId}`, formData, {
-                headers: {
-                    'Authorization': 'Bearer ' + jwtToken
+        else{
+            if (formRef.current) {
+                const formElements = new FormData(formRef.current);
+                const formData = Object.fromEntries(formElements.entries());
+    
+                await axios.put(`http://localhost:8080/users/updateUser/${user.userId}`, formData, {
+                    headers: {
+                        'Authorization': 'Bearer ' + jwtToken
+                    }
+                })
+                .then(response => {
+                     console.log('Updation successful:', response.data);
+                    navigate("/");
+                })
+                .catch(error => {
+                     console.error('Updation failed:', error);
+                });
+    
+                const newUserData = {
+                    userId,
+                    ...formData
                 }
-            })
-            .then(response => {
-                 console.log('Updation successful:', response.data);
-                navigate("/");
-            })
-            .catch(error => {
-                 console.error('Updation failed:', error);
-            });
-
-            const newUserData = {
-                userId,
-                ...formData
+                dispatch(userActions.setUserObject(newUserData));
+                formRef.current.reset();
             }
-            dispatch(userActions.setUserObject(newUserData));
-            formRef.current.reset();
         }
     }
 
@@ -99,6 +110,7 @@ const Profile = () => {
                                         type="text"
                                         id="lastName"
                                         name="lastName"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -140,6 +152,7 @@ const Profile = () => {
                                         type="text"
                                         id="linkedInUrl"
                                         name="linkedInUrl"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -170,6 +183,7 @@ const Profile = () => {
                                     id="bio"
                                     name="bio"
                                     rows={5}
+                                    required
                                 ></textarea>
                             </div>
                             <div className='flex flex-col mx-12 md:mx-0 md:flex-row space-y-4 md:space-y-0 md:space-x-4'>

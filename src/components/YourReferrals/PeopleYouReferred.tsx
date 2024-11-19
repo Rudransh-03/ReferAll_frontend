@@ -9,9 +9,9 @@ const PeopleYouReferred = () => {
     const companyName: string = useSelector((state: RootState) => state.user.currentCompany);
     const jwtToken: string = useSelector((state: RootState) => state.user.jwtToken);
     const data: YourRequestsState[] = useSelector((state: RootState) => state.yourRequests);
-    const userId: string = useSelector((state: RootState)=> state.user.userId);
+    const userId: string = useSelector((state: RootState) => state.user.userId);
 
-    const [fetching, setFetching] = useState(0);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [arePostsNull, setArePostsNull] = useState<boolean>(false);
     const [postsCount, setPostsCount] = useState<number>(0);
     const [pageNumber, setPageNumber] = useState<number>(1);
@@ -21,6 +21,7 @@ const PeopleYouReferred = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true); // Start loading
             try {
                 const response = await axios.get(`http://localhost:8080/posts/getPostsReferredByUser/${userId}`, {
                     headers: {
@@ -29,33 +30,48 @@ const PeopleYouReferred = () => {
                 });
                 console.log(response.data);
                 dispatch(yourRequestsActions.setYourRequestsObjects(response.data));
+                setArePostsNull(response.data.length === 0);
             } catch (error) {
                 console.error(error);
+                setArePostsNull(true);
+            } finally {
+                setIsLoading(false); // Stop loading
             }
         };
 
         fetchData();
     }, [pageNumber]);
 
-    function clickHandler(){
-        setFetching((fetching+1) / 2)
-      }
-
     return (
-        <div className="w-screen">
-            <div className="w-full mt-28 md:mt-28 lg:mt-40 mb-16">
-                <div className="w-full text-center text-4xl md:text-5xl h-16 font-semibold mb-4 md:mb-8">REQUESTS REFERRED <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">BY YOU</span></div>
-                <div className="w-full flex justify-center">
-                    {/* <Filters setArePostsNull={setArePostsNull} setShowPagination={setShowPagination} setPageNumber={setPageNumber}/> */}
+        <div className="w-screen h-screen flex items-center justify-center">
+            {isLoading ? (
+                <div className="text-indigo-700 text-xl md:text-2xl font-semibold animate-fade-in-out">
+                    Loading data...
                 </div>
-                {arePostsNull && <div className="mt-4 mb-4 text-2xl font-seimibold text-indigo-700 w-full flex justify-center">No posts found!!</div>}
-                {!arePostsNull && <div className="w-full flex justify-center">
-                    <ReferTable data={data}/>
-                </div>}
-                {/* <button className="ml-36 px-4 py-2 shadow-indigo-600 text-white rounded-lg bg-indigo-600 hover:bg-indigo-800 hover:cursor-pointer" onClick={clickHandler}>Refresh Posts</button> */}
-                {/* {!arePostsNull && showPagination && <div className="w-full flex justify-center"><Pagination postsCount={postsCount} pageNumber={pageNumber} setPageNumber={setPageNumber}/></div>} */}
-                
-            </div>
+            ) : (
+                <div className="w-full -mt-48 mb-16">
+                    <div className="w-full text-center text-4xl md:text-5xl h-16 font-semibold mb-4 md:mb-8">
+                        REQUESTS REFERRED{" "}
+                        <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">
+                            BY YOU
+                        </span>
+                    </div>
+                    <div className="w-full flex justify-center">
+                        {/* <Filters setArePostsNull={setArePostsNull} setShowPagination={setShowPagination} setPageNumber={setPageNumber}/> */}
+                    </div>
+                    {arePostsNull ? (
+                        <div className="mt-4 mb-4 text-2xl font-semibold text-indigo-700 w-full flex justify-center">
+                            No posts found!!
+                        </div>
+                    ) : (
+                        <div className="w-full flex justify-center">
+                            <ReferTable data={data} />
+                        </div>
+                    )}
+                    {/* <button className="ml-36 px-4 py-2 shadow-indigo-600 text-white rounded-lg bg-indigo-600 hover:bg-indigo-800 hover:cursor-pointer" onClick={clickHandler}>Refresh Posts</button> */}
+                    {/* {!arePostsNull && showPagination && <div className="w-full flex justify-center"><Pagination postsCount={postsCount} pageNumber={pageNumber} setPageNumber={setPageNumber}/></div>} */}
+                </div>
+            )}
         </div>
     );
 };
