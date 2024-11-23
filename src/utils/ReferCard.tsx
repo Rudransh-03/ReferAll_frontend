@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 
-interface HomeCard{
-    title: string,
-    content: string,
-}
+// interface HomeCard{
+//     title: string,
+//     content: string,
+// }
 
-const ReferCard = ({jobTitle, jobId, jobUrl, referredStatus, firstName, lastName, resumeUrl, linkedInUrl, emailId, currentCompany, points, postId} : any) => {
+const ReferCard = ({jobTitle, jobId, referredStatus, firstName, lastName, resumeUrl, emailId, postId} : any) => {
 
     var progress = "Unreferred";
     if(referredStatus === 1) progress = "In Progress";

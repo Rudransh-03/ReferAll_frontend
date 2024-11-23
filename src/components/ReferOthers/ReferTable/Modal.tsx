@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userState } from '../../../store/user-slice';
 
-interface ModalProps {
-  showModal: boolean;
-  handleClose: () => void;
-  getStatusDisplay: () => any;
-  data: any;
-}
+// interface ModalProps {
+//   showModal: boolean;
+//   handleClose: () => void;
+//   getStatusDisplay: () => any;
+//   data: any;
+// }
 
 const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }) => {
 

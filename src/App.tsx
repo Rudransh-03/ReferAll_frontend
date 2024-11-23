@@ -15,12 +15,12 @@ import YourJobPosts from './components/YourJobPosts/YourJobPosts';
 import PeopleYouReferred from './components/YourReferrals/PeopleYouReferred';
 import ViewAppliedJobPosts from './components/ViewAppliedJobPosts/ViewAppliedJobPosts';
 
-import { useDispatch } from 'react-redux';
-import { userActions } from './store/user-slice';
+// import { useDispatch } from 'react-redux';
+// import { userActions } from './store/user-slice';
 import SessionChecker from './components/SessionChecker';
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <BrowserRouter>

@@ -60,14 +60,14 @@ const ViewJobPosts: React.FC = () => {
   }, [jwtToken, userId]);
 
   // Handle job post deletion success (remove the post from the state)
-  const handleDeleteSuccess = (referPostId: string) => {
-    setJobPosts((prevJobPosts) => {
-      if (prevJobPosts) {
-        return prevJobPosts.filter((post) => post.referPostId !== referPostId);
-      }
-      return prevJobPosts;
-    });
-  };
+  // const handleDeleteSuccess = (referPostId: string) => {
+  //   setJobPosts((prevJobPosts) => {
+  //     if (prevJobPosts) {
+  //       return prevJobPosts.filter((post) => post.referPostId !== referPostId);
+  //     }
+  //     return prevJobPosts;
+  //   });
+  // };
 
   return (
     <div className="mt-40">

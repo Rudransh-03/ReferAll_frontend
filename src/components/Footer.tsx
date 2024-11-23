@@ -10,6 +10,7 @@ const Footer = () => {
       {/* Conditional rendering for small screens */}
       <div className="w-full md:hidden flex justify-center mb-4">
         <Link 
+          to="/"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
           className="text-white hover:underline underline-offset-4 text-lg"
         >

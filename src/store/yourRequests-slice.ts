@@ -18,6 +18,7 @@ const yourRequestsSlice = createSlice({
     initialState,
     reducers: {
         setYourRequestsObjects(state, action: PayloadAction<YourRequestsState[]>) {
+            console.log(state);
             return [...action.payload];
         }
     }

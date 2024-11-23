@@ -1,7 +1,7 @@
 import { FormEvent, useRef, useState } from 'react';
 import exclamation from './../assets/exclamation.png';
-import monkey from '../assets/signUpMonkey.png';
-import man from '../assets/SignUpMan.png';
+// import monkey from '../assets/signUpMonkey.png';
+// import man from '../assets/SignUpMan.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ const SignUp = () => {
         const form = formRef.current;
         const formData = new FormData(form!);
         const firstName = formData.get('firstName')?.toString().trim();
-        const lastName = formData.get('lastName')?.toString().trim();
+        // const lastName = formData.get('lastName')?.toString().trim();
         const contactNumber = formData.get('contactNumber')?.toString().trim();
         const emailId = formData.get('emailId')?.toString().trim();
         const password = formData.get('password')?.toString().trim();

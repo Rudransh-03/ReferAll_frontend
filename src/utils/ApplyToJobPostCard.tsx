@@ -34,7 +34,7 @@ const ApplyToJobPostCard: React.FC<YourJobPostsCardProps> = ({
   companyName,
   jobId,
   jobTitle,
-  jobDescription,
+  // jobDescription,
   jobUrl,
   yoeRequired,
   jwtToken,

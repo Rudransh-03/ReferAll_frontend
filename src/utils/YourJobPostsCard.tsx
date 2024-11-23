@@ -50,8 +50,8 @@ interface YourJobPostsCardProps {
 const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
   creationDate,
   referPostId,
-  companyName,
-  jobId,
+  // companyName,
+  // jobId,
   jobTitle,
   jobDescription,
   jobUrl,

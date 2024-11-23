@@ -1,19 +1,11 @@
 import axios from 'axios';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { userState } from '../../../store/user-slice';
 
-interface ModalProps {
-  showModal: boolean;
-  handleClose: () => void;
-  getStatusDisplay: () => any;
-  data: any;
-}
 
 const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }) => {
 
-  const navigate = useNavigate();
   const jwtToken: string = useSelector((state: { user: userState }) => state.user.jwtToken);
   const userId: string = useSelector((state: { user: userState }) => state.user.userId);
   

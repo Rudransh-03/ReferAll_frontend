@@ -6,16 +6,16 @@ import ReferTable from "./ReferTable/ReferTable";
 import { YourRequestsState, yourRequestsActions } from "../../store/yourRequests-slice";
 
 const ReferralRequestPosts = () => {
-    const companyName: string = useSelector((state: RootState) => state.user.currentCompany);
+    // const companyName: string = useSelector((state: RootState) => state.user.currentCompany);
     const jwtToken: string = useSelector((state: RootState) => state.user.jwtToken);
     const data: YourRequestsState[] = useSelector((state: RootState) => state.yourRequests);
     const userId: string = useSelector((state: RootState)=> state.user.userId);
 
-    const [fetching, setFetching] = useState(0);
-    const [arePostsNull, setArePostsNull] = useState<boolean>(false);
-    const [postsCount, setPostsCount] = useState<number>(0);
-    const [pageNumber, setPageNumber] = useState<number>(1);
-    const [showPagination, setShowPagination] = useState<boolean>(true);
+    // const [fetching, setFetching] = useState(0);
+    const [arePostsNull,] = useState<boolean>(false);
+    // const [postsCount, setPostsCount] = useState<number>(0);
+    const [pageNumber, ] = useState<number>(1);
+    // const [showPagination, setShowPagination] = useState<boolean>(true);
 
     const dispatch = useDispatch();
 
@@ -37,9 +37,9 @@ const ReferralRequestPosts = () => {
         fetchData();
     }, [pageNumber]);
 
-    function clickHandler(){
-        setFetching((fetching+1) / 2)
-      }
+    // function clickHandler(){
+    //     setFetching((fetching+1) / 2)
+    //   }
 
     return (
         <div className="w-screen">

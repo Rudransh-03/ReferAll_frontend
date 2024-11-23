@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface User {
   firstName: string;
@@ -27,17 +27,17 @@ interface YourJobPostsCardProps {
 
 const AppliedJobPostCard: React.FC<YourJobPostsCardProps> = ({
   creationDate,
-  referPostId,
+  // referPostId,
   companyName,
   jobId,
   jobTitle,
-  jobDescription,
+  // jobDescription,
   jobUrl,
   yoeRequired,
 }) => {
 
   const formattedCompanyName = companyName.charAt(0).toUpperCase() + companyName.slice(1);
-  
+
   return (
     <>
       <div className="w-2/3 flex justify-center">

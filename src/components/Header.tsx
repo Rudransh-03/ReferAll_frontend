@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { RootState } from "../store"; // Assuming RootState is defined in store
-import { userState } from "../store/user-slice";
 
 const Header = () => {
   const { pathname } = useLocation();

@@ -17,6 +17,7 @@ const referPostsSlice = createSlice({
     initialState,
     reducers: {
         setReferPostObjects(state, action: PayloadAction<ReferPostState[]>) {
+            console.log(state);
             return [...action.payload];
         }
     }
