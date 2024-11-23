@@ -16,7 +16,7 @@
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:8080/posts/getPostsByPostId/${postId}`, {
+//         const response = await axios.get(`https://referall-backend.onrender.com/posts/getPostsByPostId/${postId}`, {
 //           headers: {
 //             'Authorization': 'Bearer ' + jwtToken
 //           }

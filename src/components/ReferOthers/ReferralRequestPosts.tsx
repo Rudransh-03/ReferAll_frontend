@@ -26,7 +26,7 @@ const ReferralRequestPosts = () => {
             setIsLoading(true); // Start loading posts
             try {
                 const response = await axios.get(
-                    `http://localhost:8080/posts/getPaginatedPostsByCompany/${companyName}?pageNumber=${pageNumber}`,
+                    `https://referall-backend.onrender.com/posts/getPaginatedPostsByCompany/${companyName}?pageNumber=${pageNumber}`,
                     {
                         headers: {
                             Authorization: "Bearer " + jwtToken,
@@ -51,7 +51,7 @@ const ReferralRequestPosts = () => {
             setIsCountLoading(true); // Start loading posts count
             try {
                 const response = await axios.get(
-                    `http://localhost:8080/posts/getTotalPostsCountByCompany/${companyName}`,
+                    `https://referall-backend.onrender.com/posts/getTotalPostsCountByCompany/${companyName}`,
                     {
                         headers: {
                             Authorization: "Bearer " + jwtToken,

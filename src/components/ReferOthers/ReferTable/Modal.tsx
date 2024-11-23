@@ -18,7 +18,7 @@ const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }
   const userId: string = useSelector((state: { user: userState }) => state.user.userId);
   
   async function clickHandler() {
-    const response = await axios.get(`http://localhost:8080/changeIsReferredToInProgress/${data.postId}/${userId}`, {
+    const response = await axios.get(`https://referall-backend.onrender.com/changeIsReferredToInProgress/${data.postId}/${userId}`, {
       headers: {
         'Authorization': 'Bearer ' + jwtToken
       }

@@ -21,7 +21,7 @@ const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }
     console.log("clicked!");
     console.log(data.postId);
 
-    const response = await axios.get(`http://localhost:8080/changeIsReferredToReferred/${data.postId}/${userId}`, {
+    const response = await axios.get(`https://referall-backend.onrender.com/changeIsReferredToReferred/${data.postId}/${userId}`, {
       headers: {
         'Authorization': 'Bearer ' + jwtToken
       }

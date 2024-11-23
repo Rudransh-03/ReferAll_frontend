@@ -75,7 +75,7 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
     if (Object.keys(statusUpdates).length > 0) {
       try {
         await axios.post(
-          `http://localhost:8080/applicant/updateApplicantsStatus`,
+          `https://referall-backend.onrender.com/applicant/updateApplicantsStatus`,
           statusUpdates,
           {
             headers: {
@@ -103,7 +103,7 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
   const handleConfirmDelete = async () => {
     setIsDeleting(true);
     try {
-      await axios.delete(`http://localhost:8080/referPosts/deleteReferPost/${referPostId}`, {
+      await axios.delete(`https://referall-backend.onrender.com/referPosts/deleteReferPost/${referPostId}`, {
         headers: {
           'Authorization': `Bearer ${jwtToken}`,
         },

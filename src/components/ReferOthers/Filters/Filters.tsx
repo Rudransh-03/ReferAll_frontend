@@ -28,8 +28,8 @@ const Filters = ({ setArePostsNull, setShowPagination, setPageNumber }: any) => 
 
         try {
             const endpoint = selectedValue !== "none" && formValue
-                ? `http://localhost:8080/posts/getFilteredPostsByBothReferredStatusAndSearchTerm/${companyName}?referredStatus=${selectedValue}&searchTerm=${formValue}`
-                : `http://localhost:8080/posts/getFilteredPostsByReferredStatus/${companyName}?referredStatus=${selectedValue}`;
+                ? `https://referall-backend.onrender.com/posts/getFilteredPostsByBothReferredStatusAndSearchTerm/${companyName}?referredStatus=${selectedValue}&searchTerm=${formValue}`
+                : `https://referall-backend.onrender.com/posts/getFilteredPostsByReferredStatus/${companyName}?referredStatus=${selectedValue}`;
 
             const response = await axios.get(endpoint, {
                 headers: {

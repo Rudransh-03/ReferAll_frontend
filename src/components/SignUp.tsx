@@ -99,7 +99,7 @@ const SignUp = () => {
 
             console.log("formData", formData);
 
-            axios.post('http://localhost:8080/auth/signup', formData)
+            axios.post('https://referall-backend.onrender.com/auth/signup', formData)
                 .then(response => {
                     console.log('SignUp successful:', response.data);
                     navigate("/login");

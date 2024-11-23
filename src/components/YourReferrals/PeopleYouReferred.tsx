@@ -23,7 +23,7 @@ const PeopleYouReferred = () => {
         const fetchData = async () => {
             setIsLoading(true); // Start loading
             try {
-                const response = await axios.get(`http://localhost:8080/posts/getPostsReferredByUser/${userId}`, {
+                const response = await axios.get(`https://referall-backend.onrender.com/posts/getPostsReferredByUser/${userId}`, {
                     headers: {
                         'Authorization': 'Bearer ' + jwtToken
                     }

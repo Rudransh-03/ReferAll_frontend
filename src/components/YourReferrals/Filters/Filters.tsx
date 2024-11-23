@@ -34,7 +34,7 @@ const Filters = ({setArePostsNull, setShowPagination, setPageNumber} : any) => {
         if(searchFilterRef.current!=null && searchFilterRef.current.value.length > 0 && selectedValue.length > 0){
             
             try {
-                const response = await axios.get(`http://localhost:8080/posts/getFilteredPostsByBothReferredStatusAndSearchTerm/${companyName}?referredStatus=${selectedValue}&searchTerm=${formValue}`, {
+                const response = await axios.get(`https://referall-backend.onrender.com/posts/getFilteredPostsByBothReferredStatusAndSearchTerm/${companyName}?referredStatus=${selectedValue}&searchTerm=${formValue}`, {
                     headers: {
                         'Authorization': 'Bearer ' + jwtToken
                     }
@@ -54,7 +54,7 @@ const Filters = ({setArePostsNull, setShowPagination, setPageNumber} : any) => {
         else if((searchFilterRef.current == null) || (searchFilterRef.current!=null && searchFilterRef.current.value.length == 0)){
             
             try {
-                const response = await axios.get(`http://localhost:8080/posts/getFilteredPostsByReferredStatus/${companyName}?referredStatus=${selectedValue}`, {
+                const response = await axios.get(`https://referall-backend.onrender.com/posts/getFilteredPostsByReferredStatus/${companyName}?referredStatus=${selectedValue}`, {
                     headers: {
                         'Authorization': 'Bearer ' + jwtToken
                     }

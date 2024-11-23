@@ -19,7 +19,7 @@ const SeekReferral = () => {
             console.log(formData);
 
             try {
-                const response = await axios.post(`http://localhost:8080/posts/addPost/${userId}`, formData, {
+                const response = await axios.post(`https://referall-backend.onrender.com/posts/addPost/${userId}`, formData, {
                     headers: {
                         'Authorization': 'Bearer ' + jwtToken
                     }

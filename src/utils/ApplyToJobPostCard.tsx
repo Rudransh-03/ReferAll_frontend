@@ -50,7 +50,7 @@ const ApplyToJobPostCard: React.FC<YourJobPostsCardProps> = ({
         try {
           console.log("referPostId and userId below");
           console.log(referPostId+" "+userId);
-            const res = await axios.get(`http://localhost:8080/referPosts/applyToReferPost/${referPostId}/${userId}`, {
+            const res = await axios.get(`https://referall-backend.onrender.com/referPosts/applyToReferPost/${referPostId}/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${jwtToken}`,
             },

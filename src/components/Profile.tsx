@@ -49,7 +49,7 @@ const Profile = () => {
                 const formElements = new FormData(formRef.current);
                 const formData = Object.fromEntries(formElements.entries());
     
-                await axios.put(`http://localhost:8080/users/updateUser/${user.userId}`, formData, {
+                await axios.put(`https://referall-backend.onrender.com/users/updateUser/${user.userId}`, formData, {
                     headers: {
                         'Authorization': 'Bearer ' + jwtToken
                     }

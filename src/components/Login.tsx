@@ -18,7 +18,7 @@ const Login = () => {
             const formElements = new FormData(formRef.current);
             const formData = Object.fromEntries(formElements.entries());
 
-            axios.post('http://localhost:8080/auth/login', formData)
+            axios.post('https://referall-backend.onrender.com/auth/login', formData)
                 .then(response => {
                     dispatch(userActions.setUserObject(response.data));
                     navigate("/");

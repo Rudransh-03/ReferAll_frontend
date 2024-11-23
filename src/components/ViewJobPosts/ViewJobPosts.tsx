@@ -41,7 +41,7 @@ const ViewJobPosts: React.FC = () => {
       setIsLoading(true); // Start loading
       try {
         const response = await axios.get(
-          `http://localhost:8080/referPosts/getAllReferPosts/${userId}`,
+          `https://referall-backend.onrender.com/referPosts/getAllReferPosts/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${jwtToken}`,

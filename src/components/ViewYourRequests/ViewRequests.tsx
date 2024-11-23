@@ -22,7 +22,7 @@ const ReferralRequestPosts = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/posts/getPostsByUser/${userId}`, {
+                const response = await axios.get(`https://referall-backend.onrender.com/posts/getPostsByUser/${userId}`, {
                     headers: {
                         'Authorization': 'Bearer ' + jwtToken
                     }
