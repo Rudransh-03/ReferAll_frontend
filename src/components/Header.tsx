@@ -7,6 +7,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const path = pathname.substring(1);
   const userFirstName: string = useSelector((state: RootState) => state.user.firstName);
+  const userCompanyName: string = useSelector((state: RootState) => state.user.currentCompany);
 
   const [referralsOpen, setReferralsOpen] = useState(false);
   const [jobPostsOpen, setJobPostsOpen] = useState(false);
@@ -77,10 +78,12 @@ const Header = () => {
                 <p className="hover:underline ">View Your Requests</p>
                 <p className="text-sm text-gray-500">Track which of your applications got referred</p>
               </Link>
-              <Link className="block py-2" to={(userFirstName.length === 0) ? "/login" : "/refer"} onClick={closeDropdowns}>
-                <p className="hover:underline ">Refer People</p>
-                <p className="text-sm text-gray-500">Be an aladdin for those in need of jobs (a good karma helps :))</p>
-              </Link>
+              {(userCompanyName !== "N/A") &&
+                <Link className="block py-2" to={(userFirstName.length === 0) ? "/login" : "/refer"} onClick={closeDropdowns}>
+                  <p className="hover:underline ">Refer People</p>
+                  <p className="text-sm text-gray-500">Be an aladdin for those in need of jobs (a good karma helps :))</p>
+                </Link>
+              }
             </div>
           )}
         </div>

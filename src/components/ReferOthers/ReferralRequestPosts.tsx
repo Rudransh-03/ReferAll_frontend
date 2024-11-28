@@ -69,49 +69,61 @@ const ReferralRequestPosts = () => {
         fetchTotalPostsCount();
     }, []);
 
-    return (
-        <div className="w-screen h-screen flex items-center justify-center">
-            {isLoading || isCountLoading ? (
-                <div className="text-indigo-700 text-xl md:text-2xl font-semibold animate-fade-in-out">
-                    Loading data...
-                </div>
-            ) : (
-                <div className="w-full -mt-48">
-                    <div className="w-full text-center text-4xl md:text-5xl md:mb-8 mb-4 md:mb-0 md:text-5xl h-16 font-semibold">
-                        REFER PEOPLE TO{" "}
-                        <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">
-                            {companyName.toUpperCase()}
-                        </span>
+    if(companyName !== "N/A"){
+        return (
+            <div className="w-screen h-screen flex items-center justify-center">
+                {isLoading || isCountLoading ? (
+                    <div className="text-indigo-700 text-xl md:text-2xl font-semibold animate-fade-in-out">
+                        Loading data...
                     </div>
-                    <div className="md:mx-12 mx-8 flex justify-center">
-                        <Filters
-                            setArePostsNull={setArePostsNull}
-                            setShowPagination={setShowPagination}
-                            setPageNumber={setPageNumber}
-                        />
-                    </div>
-                    {arePostsNull ? (
-                        <div className="mt-4 mb-4 text-2xl font-semibold text-indigo-700 w-full flex justify-center">
-                            No posts found!!
+                ) : (
+                    <div className="w-full -mt-48">
+                        <div className="w-full text-center text-4xl md:text-5xl md:mb-8 mb-4 md:mb-0 md:text-5xl h-16 font-semibold">
+                            REFER PEOPLE TO{" "}
+                            <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">
+                                {companyName.toUpperCase()}
+                            </span>
                         </div>
-                    ) : (
-                        <div className="w-full flex justify-center">
-                            <ReferTable data={data} />
-                        </div>
-                    )}
-                    {!arePostsNull && showPagination && (
-                        <div className="w-full flex justify-center">
-                            <Pagination
-                                postsCount={postsCount}
-                                pageNumber={pageNumber}
+                        <div className="md:mx-12 mx-8 flex justify-center">
+                            <Filters
+                                setArePostsNull={setArePostsNull}
+                                setShowPagination={setShowPagination}
                                 setPageNumber={setPageNumber}
                             />
                         </div>
-                    )}
+                        {arePostsNull ? (
+                            <div className="mt-4 mb-4 text-2xl font-semibold text-indigo-700 w-full flex justify-center">
+                                No posts found!!
+                            </div>
+                        ) : (
+                            <div className="w-full flex justify-center">
+                                <ReferTable data={data} />
+                            </div>
+                        )}
+                        {!arePostsNull && showPagination && (
+                            <div className="w-full flex justify-center">
+                                <Pagination
+                                    postsCount={postsCount}
+                                    pageNumber={pageNumber}
+                                    setPageNumber={setPageNumber}
+                                />
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+        );
+    }
+    else{
+        return (
+            <div>
+                <div className="text-2xl font-semibold text-indigo-700 text-center mt-20">
+                    YOUR COMPANY NAME IS SET TO N/A. PLEASE VERIFY IT AGAIN AS N/A MEANS YOU ARE STILL SEEKING A JOB AND HENCE CAN'T REFER OTHERS.
                 </div>
-            )}
-        </div>
-    );
+            </div>
+        );
+    }
+
 };
 
 export default ReferralRequestPosts;

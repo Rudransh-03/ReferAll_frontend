@@ -22,9 +22,12 @@ function ProtectedRoute({ children }: { children: JSX.Element }) {
 
   // Redirect to login if the user is not authenticated
   return userFirstName.length === 0 ? <Navigate to="/login" replace /> : children;
+  
+
 }
 
 function App() {
+  const userCompanyName: string = useSelector((state: RootState) => state.user.currentCompany);
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
@@ -36,6 +39,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
 
             {/* Protected Routes */}
+
             <Route
               path="/seek_referral"
               element={
@@ -60,14 +64,17 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/refer"
-              element={
-                <ProtectedRoute>
-                  <ReferralRequestPosts />
-                </ProtectedRoute>
-              }
-            />
+
+            {(userCompanyName !== "N/A") && 
+              <Route
+                path="/refer"
+                element={
+                  <ProtectedRoute>
+                    <ReferralRequestPosts />
+                  </ProtectedRoute>
+                }
+              />
+            }
             <Route
               path="/my_profile"
               element={
