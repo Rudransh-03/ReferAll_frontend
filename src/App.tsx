@@ -18,8 +18,11 @@ import ViewAppliedJobPosts from './components/ViewAppliedJobPosts/ViewAppliedJob
 // import { useDispatch } from 'react-redux';
 // import { userActions } from './store/user-slice';
 import SessionChecker from './components/SessionChecker';
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
 
 function App() {
+  const userFirstName: string = useSelector((state: RootState) => state.user.firstName);
   // const dispatch = useDispatch();
 
   return (
@@ -29,18 +32,18 @@ function App() {
         <Header />
         <div className="flex-grow">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="seek_referral" element={<SeekReferral />} />
-            <Route path="view_your_referrals" element={<PeopleYouReferred />} />
-            <Route path="view_requests" element={<ViewRequests />} />
-            <Route path="login" element={<Login />} />
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="refer" element={<ReferralRequestPosts />} />
-            <Route path="my_profile" element={<Profile />} />
-            <Route path="create_job_post" element={<CreateJobPost />} />
-            <Route path="view_job_posts" element={<ViewJobPosts />} />
-            <Route path="your_job_posts" element={<YourJobPosts />} />
-            <Route path="your_applications" element={<ViewAppliedJobPosts />} />
+            <Route path={"/"} element={<Home />} />
+            <Route path={(userFirstName.length === 0) ? "/login" : "seek_referral"} element={(userFirstName.length === 0) ? <Login /> :<SeekReferral />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"view_your_referrals"} element={(userFirstName.length === 0) ? <Login /> :<PeopleYouReferred />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"view_requests"} element={(userFirstName.length === 0) ? <Login /> :<ViewRequests />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"login"} element={(userFirstName.length === 0) ? <Login /> :<Login />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"sign-up"} element={(userFirstName.length === 0) ? <Login /> :<SignUp />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"refer"} element={(userFirstName.length === 0) ? <Login /> :<ReferralRequestPosts />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"my_profile"} element={(userFirstName.length === 0) ? <Login /> :<Profile />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"create_job_post"} element={(userFirstName.length === 0) ? <Login /> :<CreateJobPost />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"view_job_posts"} element={(userFirstName.length === 0) ? <Login /> :<ViewJobPosts />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"your_job_posts"} element={(userFirstName.length === 0) ? <Login /> :<YourJobPosts />} />
+            <Route path={(userFirstName.length === 0) ? "/login" :"your_applications"} element={(userFirstName.length === 0) ? <Login /> :<ViewAppliedJobPosts />} />
           </Routes>
         </div>
         <Footer />
