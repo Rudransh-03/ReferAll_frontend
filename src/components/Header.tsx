@@ -74,7 +74,7 @@ const Header = () => {
                 <p className="hover:underline ">See People You Referred</p>
                 <p className="text-sm text-gray-500">Track whom you referred and the current referral status of those applications</p>
               </Link>
-              <Link className="block py-2 border-b border-gray-300" to={(userFirstName.length === 0) ? "/login" : "/view_requests"} onClick={closeDropdowns}>
+              <Link className={`block py-2 ${(userCompanyName !== "N/A") ? "border-b" : ""} border-gray-300`} to={(userFirstName.length === 0) ? "/login" : "/view_requests"} onClick={closeDropdowns}>
                 <p className="hover:underline ">View Your Requests</p>
                 <p className="text-sm text-gray-500">Track which of your applications got referred</p>
               </Link>
@@ -98,18 +98,23 @@ const Header = () => {
           </span>
           {jobPostsOpen && (
             <div className="absolute bg-white text-indigo-700 font-normal shadow-lg rounded-md mt-2 p-4 w-48 md:w-64 lg:w-72 text-sm md:text-base animate-slideDown2 z-50">
+            {(userCompanyName !== "N/A") &&  
               <Link className="block py-2 border-b border-gray-300" to={(userFirstName.length === 0) ? "/login" : "/create_job_post"} onClick={closeDropdowns}>
                 <p className="hover:underline">Create Job Post</p>
                 <p className="text-sm text-gray-500">Advertise new job openings</p>
               </Link>
+            }
               <Link className="block py-2 border-b border-gray-300" to={(userFirstName.length === 0) ? "/login" : "/view_job_posts"} onClick={closeDropdowns}>
                 <p className="hover:underline">View Job Posts</p>
                 <p className="text-sm text-gray-500">Browse available jobs</p>
               </Link>
+
+            {(userCompanyName !== "N/A") &&
               <Link className="block py-2 border-b border-gray-300" to={(userFirstName.length === 0) ? "/login" : "/your_job_posts"} onClick={closeDropdowns}>
                 <p className="hover:underline">Your Job Posts</p>
                 <p className="text-sm text-gray-500">Manage your job listings</p>
               </Link>
+            }
               <Link className="block py-2" to={(userFirstName.length === 0) ? "/login" : "/your_applications"} onClick={closeDropdowns}>
                 <p className="hover:underline">Your Applications</p>
                 <p className="text-sm text-gray-500">View the jobs you have applied for at a single place</p>
