@@ -97,7 +97,7 @@ const Header = () => {
             className={`hover:underline underline-offset-4 ${['create_job_post', 'view_job_posts', 'your_job_posts'].includes(path) ? 'underline' : ''} cursor-pointer`}
             onClick={toggleJobPostsOpen}
           >
-            Job Posts
+            Posts
           </span>
           {jobPostsOpen && (
             <div className="absolute bg-white text-indigo-700 font-normal shadow-lg rounded-md mt-2 p-4 w-48 md:w-64 lg:w-72 text-sm md:text-base animate-slideDown2 z-50">
@@ -129,7 +129,7 @@ const Header = () => {
         {/* Profile and Login Links */}
         {userFirstName.length > 0 ? (
           <Link className="hover:cursor-pointer hover:underline underline-offset-4" to="/my_profile">
-            Your Profile
+            Profile
           </Link>
         ) : (
           <Link className="hover:cursor-pointer hover:underline underline-offset-4" to="/login">
