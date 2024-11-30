@@ -65,7 +65,7 @@ const Header = () => {
             Referrals
           </span>
           {referralsOpen && (
-            <div className="absolute bg-white text-indigo-700 shadow-lg font-normal rounded-md mt-2 md:p-4 w-48 md:w-64 lg:w-72 text-sm md:text-base animate-slideDown2 z-50">
+            <div className="-ml-12 absolute bg-white text-indigo-700 shadow-lg font-normal rounded-md mt-2 p-3 md:p-4 w-48 md:w-64 lg:w-72 text-sm md:text-base animate-slideDown2 z-50">
               <Link className="block py-2 border-b border-gray-300" to={(userFirstName.length === 0) ? "/login" : '/seek_referral'} onClick={closeDropdowns}>
                 <p className="hover:underline">Seek A Referral</p>
                 <p className="text-sm text-gray-500">Fill a simple form and get referred</p>
@@ -100,7 +100,7 @@ const Header = () => {
             Posts
           </span>
           {jobPostsOpen && (
-            <div className="-ml-28 absolute bg-white text-indigo-700 font-normal shadow-lg rounded-md mt-2 p-4 w-48 md:w-64 lg:w-72 text-sm md:text-base animate-slideDown2 z-50">
+            <div className="-ml-28 absolute bg-white text-indigo-700 font-normal shadow-lg rounded-md mt-2 p-3 md:p-4 w-48 md:w-64 lg:w-72 text-sm md:text-base animate-slideDown2 z-50">
             {(userCompanyName !== "N/A") &&  
               <Link className="block py-2 border-b border-gray-300" to={(userFirstName.length === 0) ? "/login" : "/create_job_post"} onClick={closeDropdowns}>
                 <p className="hover:underline">Create Job Post</p>
