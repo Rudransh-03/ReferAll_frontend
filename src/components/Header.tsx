@@ -65,15 +65,18 @@ const Header = () => {
             Referrals
           </span>
           {referralsOpen && (
-            <div className="absolute bg-white text-indigo-700 shadow-lg font-normal rounded-md mt-2 p-4 w-48 md:w-64 lg:w-72 text-sm md:text-base animate-slideDown2 z-50">
+            <div className="absolute bg-white text-indigo-700 shadow-lg font-normal rounded-md mt-2 md:p-4 w-48 md:w-64 lg:w-72 text-sm md:text-base animate-slideDown2 z-50">
               <Link className="block py-2 border-b border-gray-300" to={(userFirstName.length === 0) ? "/login" : '/seek_referral'} onClick={closeDropdowns}>
                 <p className="hover:underline">Seek A Referral</p>
                 <p className="text-sm text-gray-500">Fill a simple form and get referred</p>
               </Link>
+
+            {(userCompanyName !== "N/A") &&
               <Link className="block py-2 border-b border-gray-300" to={(userFirstName.length === 0) ? "/login" : '/view_your_referrals'} onClick={closeDropdowns}>
                 <p className="hover:underline ">See People You Referred</p>
                 <p className="text-sm text-gray-500">Track whom you referred and the current referral status of those applications</p>
               </Link>
+            }
               <Link className={`block py-2 ${(userCompanyName !== "N/A") ? "border-b" : ""} border-gray-300`} to={(userFirstName.length === 0) ? "/login" : "/view_requests"} onClick={closeDropdowns}>
                 <p className="hover:underline ">View Your Requests</p>
                 <p className="text-sm text-gray-500">Track which of your applications got referred</p>
@@ -130,7 +133,7 @@ const Header = () => {
           </Link>
         ) : (
           <Link className="hover:cursor-pointer hover:underline underline-offset-4" to="/login">
-            Login/Sign-Up
+            Login
           </Link>
         )}
       </div>

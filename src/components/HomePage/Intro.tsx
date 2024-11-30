@@ -18,8 +18,8 @@ const Intro = () => {
             </div>
 
             <div className="flex justify-center mt-12 text-xl text-white animate-slideDown">
-                <button className="mx-4 bg-indigo-800 p-4 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200"><Link to="/refer">Refer Someone</Link></button>
-                <button className="mx-4 bg-indigo-800 p-4 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200"><Link to="/seek_referral">Ask for Referral</Link></button>
+                <button className="mx-4 bg-indigo-800 p-3 md:p-4 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200"><Link to="/refer">Refer Someone</Link></button>
+                <button className="mx-4 bg-indigo-800 p-3 md:p-4 rounded-md hover:scale-110 transition duration-150 ease-in-out hover:shadow-lg hover:shadow-indigo-200"><Link to="/seek_referral">Ask for Referral</Link></button>
             </div>
         </div>
     </div>
