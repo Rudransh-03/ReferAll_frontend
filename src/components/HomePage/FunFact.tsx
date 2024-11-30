@@ -27,14 +27,14 @@ const FunFact = () => {
   }, [nextIndex]);
 
   return (
-    <div className="mt-16 ml-12 mr-12 border-2 border-indigo-700 p-4 bg-indigo-800 text-white rounded-lg">
+    <div className="mt-16 ml-8 mr-8 md:ml-12 md:mr-12 border-2 border-indigo-700 p-3 md:p-4 bg-indigo-800 text-white rounded-lg">
       <div className="flex items-center">
         <img src={tick} className="w-8 h-8 mt-1" alt="tick" />
-        <span className="mt-1 ml-2 text-xl font-semibold">Fun Fact(s)</span>
+        <span className="md:mt-1 ml-2 text-xl font-semibold">Fun Fact(s)</span>
       </div>
       <div className="relative overflow-hidden h-12 md:h-8 mt-2">
         <div className={`absolute transition-transform duration-1000 transform ${isSlidingOut ? 'translate-x-[-100%]' : 'translate-x-[2%]'}`}>
-          <div className="h-8">{funFacts[currentIndex]}</div>
+          <div className="text-xs md:text-base h-8">{funFacts[currentIndex]}</div>
         </div>
       </div>
     </div>
