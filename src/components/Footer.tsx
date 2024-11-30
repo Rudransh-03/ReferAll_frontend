@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { userState } from "../store/user-slice";
 import { Link } from "react-router-dom";
 
+
 const Footer = () => {
   const userFirstName: string = useSelector((state: { user: userState }) => state.user.firstName);
   
@@ -9,13 +10,12 @@ const Footer = () => {
     <div className="bg-indigo-900 h-auto pb-10 pt-10 px-4 flex flex-col md:flex-row text-white">
       {/* Conditional rendering for small screens */}
       <div className="w-full md:hidden flex justify-center mb-4">
-        <Link 
-          to="/"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
-          className="text-white hover:underline underline-offset-4 text-lg"
-        >
-          Go to top
-        </Link>
+      <button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className="text-white hover:underline underline-offset-4 text-lg"
+    >
+      Go to Top
+    </button>
       </div>
       
       {/* Render footer content for medium and larger screens */}

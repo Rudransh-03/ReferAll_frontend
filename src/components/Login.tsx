@@ -35,7 +35,7 @@ const Login = () => {
 
     return (
         <div className="w-screen flex justify-center">
-            <div className="mt-56 w-8/12 pt-8 border mb-20 border-indigo-700 rounded-xl shadow-xl">
+            <div className="mt-56 w-10/12 md:w-8/12 pt-8 border mb-20 border-indigo-700 rounded-xl shadow-xl">
                 <div className="w-full flex h-16 justify-center text-5xl font-semibold">
                     <div className="bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">Login</div>
                 </div>
@@ -50,7 +50,7 @@ const Login = () => {
                     <form ref={formRef} onSubmit={submitHandler} className="w-full">
                         <div className="mb-8 w-full flex justify-center items-center">
                             <input 
-                                className="mt-2 border-2 w-2/4 p-2 rounded-md border-gray-300 focus:border-indigo-700" 
+                                className="mt-2 border-2 w-3/4 md:w-2/4 p-2 rounded-md border-gray-300 focus:border-indigo-700" 
                                 type="email" 
                                 id="emailId" 
                                 name="emailId" 
@@ -60,7 +60,7 @@ const Login = () => {
                         </div>
                         <div className="mb-8 w-full flex justify-center items-center">
                             <input 
-                                className="mt-2 border-2 w-2/4 p-2 rounded-md border-gray-300 focus:border-indigo-700" 
+                                className="mt-2 border-2 w-3/4 md:w-2/4 p-2 rounded-md border-gray-300 focus:border-indigo-700" 
                                 type="password" 
                                 id="password" 
                                 name="password" 
