@@ -77,7 +77,7 @@ const ReferralRequestPosts = () => {
                         Loading data...
                     </div>
                 ) : (
-                    <div className="w-full -mt-48">
+                    <div className="w-full">
                         <div className="w-full text-center text-4xl md:text-5xl md:mb-8 mb-4 md:mb-0 md:text-5xl h-16 font-semibold">
                             REFER PEOPLE TO{" "}
                             <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">
