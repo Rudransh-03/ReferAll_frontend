@@ -81,7 +81,7 @@ const YourJobPosts: React.FC = () => {
 
   return (
     <div className="mt-28 md:mt-40">
-      <div className="w-full text-center text-4xl md:text-5xl h-16 font-semibold">
+      <div className="w-full text-center text-3xl md:text-5xl h-16 font-semibold">
         YOUR{" "}
         <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">
           JOB POSTS

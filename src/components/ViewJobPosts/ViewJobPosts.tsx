@@ -71,7 +71,7 @@ const ViewJobPosts: React.FC = () => {
 
   return (
     <div className="mt-40">
-      <div className="w-full text-center text-5xl h-16 font-semibold">
+      <div className="w-full text-center text-3xl md:text-5xl h-16 font-semibold">
         APPLY{" "}
         <span className="h-16 bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text">
           NOW!
