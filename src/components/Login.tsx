@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { FormEvent, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -8,6 +7,13 @@ import { userActions } from "../store/user-slice";
 const Login = () => {
     const formRef = useRef<HTMLFormElement | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+    const [showOtpModal, setShowOtpModal] = useState(false);
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [otpError, setOtpError] = useState<string | null>(null);
+    const [emailId, setEmailId] = useState<string | null>(null);
+    const [password, setPassword] = useState<string | null>(null);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -78,11 +84,123 @@ const Login = () => {
                     </form>
                 </div>
                 <div className="flex justify-center w-full">
+                    <div className="mb-4">
+                        <span className="bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text cursor-pointer" 
+                              onClick={() => setShowForgotPasswordModal(true)}>
+                            Forgot Password
+                        </span>
+                    </div>
+                </div>
+                <div className="flex justify-center w-full">
                     <div className="mb-14">Don't have an account? <span className="bg-gradient-to-r from-indigo-700 to-violet-500 inline-block text-transparent bg-clip-text"><Link to="/sign-up">SignUp</Link></span></div>
                 </div>
             </div>
+            {showForgotPasswordModal && <ForgotPasswordModal onClose={() => setShowForgotPasswordModal(false)} setShowOtpModal={setShowOtpModal} setEmailId={setEmailId} setPassword={setPassword}/>}
+            {showOtpModal && <OtpModal onClose={() => setShowOtpModal(false)} setIsProcessing={setIsProcessing} setOtpError={setOtpError} otpError={otpError} emailId={emailId} password = {password}/>}
         </div>
     );
 };
 
 export default Login;
+
+// ForgotPasswordModal Component
+const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword }: { onClose: () => void; setShowOtpModal: React.Dispatch<React.SetStateAction<boolean>>; setEmailId: React.Dispatch<React.SetStateAction<string | null>>; setPassword:  React.Dispatch<React.SetStateAction<string | null>>}) => {
+    const formRef = useRef<HTMLFormElement | null>(null);
+
+    const submitHandler = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (formRef.current) {
+            const formElements = new FormData(formRef.current);
+            const formData = Object.fromEntries(formElements.entries());
+
+            console.log(formData);
+
+            console.log(formData.emailId.toString());
+
+            const emailId = formData.emailId.toString();
+            const password = formData.newPassword.toString();
+            
+            if(formData.emailId!=null) setEmailId(emailId);
+            if(formData.newPassword!=null) setPassword(password);
+
+            axios.post('http://localhost:8080/auth/generate-otp', formData)
+                .then(() => {
+                    onClose();
+                    setShowOtpModal(true);
+                })
+                .catch(error => {
+                    console.error('Failed to generate OTP:', error.response.data);
+                });
+        }
+    };
+
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div className="bg-white w-11/12 md:w-6/12 lg:w-4/12 rounded-md p-8">
+                <h2 className="text-center text-xl font-semibold mb-4">Reset Password</h2>
+                <form ref={formRef} onSubmit={submitHandler}>
+                    <input type="email" name="emailId" placeholder="Email Id" required className="w-full mb-4 p-2 border rounded-md" />
+                    <input type="password" name="newPassword" placeholder="New Password" required className="w-full mb-4 p-2 border rounded-md" />
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" required className="w-full mb-4 p-2 border rounded-md" />
+                    <div className="flex justify-end">
+                        <button type="submit" className="bg-indigo-700 text-white px-4 py-2 rounded-md">Submit</button>
+                        <button type="button" onClick={onClose} className="ml-4 px-4 py-2 border rounded-md">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+// OtpModal Component
+const OtpModal = ({ onClose, setIsProcessing, setOtpError, otpError, emailId, password }: { onClose: () => void; setIsProcessing: React.Dispatch<React.SetStateAction<boolean>>; setOtpError: React.Dispatch<React.SetStateAction<string | null>>; otpError: string | null; emailId: string | null; password: string | null }) => {
+    const formRef = useRef<HTMLFormElement | null>(null);
+
+    const submitHandler = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (formRef.current) {
+            const formElements = new FormData(formRef.current);
+            const formData = Object.fromEntries(formElements.entries());
+
+            setIsProcessing(true);
+
+            console.log(formData);
+
+            const validateOtpBody = {
+                OTP: formData.otp,
+                emailId: emailId,
+                password: password
+            }
+
+            console.log(validateOtpBody);
+
+            axios.post('http://localhost:8080/auth/validate-otp', validateOtpBody)
+                .then(() => {
+                    setIsProcessing(false);
+                    onClose();
+                    alert("Password has been updated successfully!");
+                    window.location.reload();
+                })
+                .catch(error => {
+                    setIsProcessing(false);
+                    setOtpError(error.response.data);
+                });
+        }
+    };
+
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div className="bg-white w-11/12 md:w-6/12 lg:w-4/12 rounded-md p-8">
+                <h2 className="text-center text-xl font-semibold mb-4">Enter OTP</h2>
+                <form ref={formRef} onSubmit={submitHandler}>
+                    <input type="text" name="otp" placeholder="Enter OTP" required className="w-full mb-4 p-2 border rounded-md" />
+                    {otpError && <div className="text-red-600 text-center mb-4">{otpError}</div>}
+                    <div className="flex justify-end">
+                        <button type="submit" className="bg-indigo-700 text-white px-4 py-2 rounded-md">Submit</button>
+                        <button type="button" onClick={onClose} className="ml-4 px-4 py-2 border rounded-md">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+};
