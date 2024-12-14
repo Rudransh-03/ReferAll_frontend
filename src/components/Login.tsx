@@ -123,7 +123,7 @@ const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword
             if(formData.emailId!=null) setEmailId(emailId);
             if(formData.newPassword!=null) setPassword(password);
 
-            axios.post('http://localhost:8080/auth/generate-otp', formData)
+            axios.post('https://referall-backend.onrender.com/auth/generate-otp', formData)
                 .then(() => {
                     onClose();
                     setShowOtpModal(true);
@@ -174,7 +174,7 @@ const OtpModal = ({ onClose, setIsProcessing, setOtpError, otpError, emailId, pa
 
             console.log(validateOtpBody);
 
-            axios.post('http://localhost:8080/auth/validate-otp', validateOtpBody)
+            axios.post('https://referall-backend.onrender.com/auth/validate-otp', validateOtpBody)
                 .then(() => {
                     setIsProcessing(false);
                     onClose();
