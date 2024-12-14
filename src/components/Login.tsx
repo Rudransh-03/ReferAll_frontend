@@ -9,7 +9,7 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
     const [showOtpModal, setShowOtpModal] = useState(false);
-    const [isProcessing, setIsProcessing] = useState(false);
+    const [, setIsProcessing] = useState(false);
     const [otpError, setOtpError] = useState<string | null>(null);
     const [emailId, setEmailId] = useState<string | null>(null);
     const [password, setPassword] = useState<string | null>(null);
