@@ -104,8 +104,23 @@ const Login = () => {
 export default Login;
 
 // ForgotPasswordModal Component
-const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword }: { onClose: () => void; setShowOtpModal: React.Dispatch<React.SetStateAction<boolean>>; setEmailId: React.Dispatch<React.SetStateAction<string | null>>; setPassword:  React.Dispatch<React.SetStateAction<string | null>>}) => {
+const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword }: { onClose: () => void; setShowOtpModal: React.Dispatch<React.SetStateAction<boolean>>; setEmailId: React.Dispatch<React.SetStateAction<string | null>>; setPassword: React.Dispatch<React.SetStateAction<string | null>> }) => {
     const formRef = useRef<HTMLFormElement | null>(null);
+    const [passwordError, setPasswordError] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+    const handlePasswordValidation = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newPassword = formRef.current?.elements.namedItem("newPassword") as HTMLInputElement;
+        const confirmPassword = formRef.current?.elements.namedItem("confirmPassword") as HTMLInputElement;
+
+        if (newPassword && confirmPassword) {
+            if (newPassword.value !== confirmPassword.value) {
+                setPasswordError("Passwords do not match");
+            } else {
+                setPasswordError(null);
+            }
+        }
+    };
 
     const submitHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -119,9 +134,11 @@ const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword
 
             const emailId = formData.emailId.toString();
             const password = formData.newPassword.toString();
-            
-            if(formData.emailId!=null) setEmailId(emailId);
-            if(formData.newPassword!=null) setPassword(password);
+
+            if (formData.emailId != null) setEmailId(emailId);
+            if (formData.newPassword != null) setPassword(password);
+
+            setIsSubmitting(true); // Disable button and change text
 
             axios.post('https://referall-backend.onrender.com/auth/generate-otp', formData)
                 .then(() => {
@@ -130,6 +147,9 @@ const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword
                 })
                 .catch(error => {
                     console.error('Failed to generate OTP:', error.response.data);
+                })
+                .finally(() => {
+                    setIsSubmitting(false); // Re-enable button after operation
                 });
         }
     };
@@ -140,10 +160,17 @@ const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword
                 <h2 className="text-center text-xl font-semibold mb-4">Reset Password</h2>
                 <form ref={formRef} onSubmit={submitHandler}>
                     <input type="email" name="emailId" placeholder="Email Id" required className="w-full mb-4 p-2 border rounded-md" />
-                    <input type="password" name="newPassword" placeholder="New Password" required className="w-full mb-4 p-2 border rounded-md" />
-                    <input type="password" name="confirmPassword" placeholder="Confirm Password" required className="w-full mb-4 p-2 border rounded-md" />
+                    <input type="password" name="newPassword" placeholder="New Password" required className="w-full mb-4 p-2 border rounded-md" onChange={handlePasswordValidation} />
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" required className="w-full mb-4 p-2 border rounded-md" onChange={handlePasswordValidation} />
+                    {passwordError && <p className="text-red-500 text-sm mb-4">{passwordError}</p>}
                     <div className="flex justify-end">
-                        <button type="submit" className="bg-indigo-700 text-white px-4 py-2 rounded-md">Submit</button>
+                        <button 
+                            type="submit" 
+                            className={`px-4 py-2 rounded-md ${isSubmitting ? 'bg-gray-500' : 'bg-indigo-700'} text-white`} 
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? "Submitting..." : "Submit"}
+                        </button>
                         <button type="button" onClick={onClose} className="ml-4 px-4 py-2 border rounded-md">Cancel</button>
                     </div>
                 </form>
@@ -152,9 +179,11 @@ const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword
     );
 };
 
+
 // OtpModal Component
 const OtpModal = ({ onClose, setIsProcessing, setOtpError, otpError, emailId, password }: { onClose: () => void; setIsProcessing: React.Dispatch<React.SetStateAction<boolean>>; setOtpError: React.Dispatch<React.SetStateAction<string | null>>; otpError: string | null; emailId: string | null; password: string | null }) => {
     const formRef = useRef<HTMLFormElement | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
     const submitHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -163,8 +192,7 @@ const OtpModal = ({ onClose, setIsProcessing, setOtpError, otpError, emailId, pa
             const formData = Object.fromEntries(formElements.entries());
 
             setIsProcessing(true);
-
-            console.log(formData);
+            setIsSubmitting(true); // Disable button and change text
 
             const validateOtpBody = {
                 OTP: formData.otp,
@@ -177,12 +205,14 @@ const OtpModal = ({ onClose, setIsProcessing, setOtpError, otpError, emailId, pa
             axios.post('https://referall-backend.onrender.com/auth/validate-otp', validateOtpBody)
                 .then(() => {
                     setIsProcessing(false);
+                    setIsSubmitting(false);
                     onClose();
                     alert("Password has been updated successfully!");
                     window.location.reload();
                 })
                 .catch(error => {
                     setIsProcessing(false);
+                    setIsSubmitting(false);
                     setOtpError(error.response.data);
                 });
         }
@@ -196,7 +226,13 @@ const OtpModal = ({ onClose, setIsProcessing, setOtpError, otpError, emailId, pa
                     <input type="text" name="otp" placeholder="Enter OTP" required className="w-full mb-4 p-2 border rounded-md" />
                     {otpError && <div className="text-red-600 text-center mb-4">{otpError}</div>}
                     <div className="flex justify-end">
-                        <button type="submit" className="bg-indigo-700 text-white px-4 py-2 rounded-md">Submit</button>
+                        <button 
+                            type="submit" 
+                            className={`px-4 py-2 rounded-md ${isSubmitting ? 'bg-gray-500' : 'bg-indigo-700'} text-white`} 
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? "Submitting..." : "Submit"}
+                        </button>
                         <button type="button" onClick={onClose} className="ml-4 px-4 py-2 border rounded-md">Cancel</button>
                     </div>
                 </form>
