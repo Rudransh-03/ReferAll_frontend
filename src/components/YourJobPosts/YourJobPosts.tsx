@@ -56,11 +56,11 @@ const YourJobPosts: React.FC = () => {
             },
           }
         );
-        console.log(response.data);
+        // console.log(response.data);
         setApplicants(response.data[0]?.applicants || []); // Set applicants
         setJobPosts(response.data); // Set job posts
       } catch (error) {
-        console.error("Error fetching the job posts:", error);
+        console.error("Error fetching the job posts");
       } finally {
         setIsLoading(false); // Stop loading
       }

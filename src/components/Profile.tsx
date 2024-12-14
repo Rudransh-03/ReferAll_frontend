@@ -54,12 +54,11 @@ const Profile = () => {
                         'Authorization': 'Bearer ' + jwtToken
                     }
                 })
-                .then(response => {
-                     console.log('Updation successful:', response.data);
+                .then(() => {
                     navigate("/");
                 })
-                .catch(error => {
-                     console.error('Updation failed:', error);
+                .catch(() => {
+                     console.error('Updation failed');
                 });
     
                 const newUserData = {

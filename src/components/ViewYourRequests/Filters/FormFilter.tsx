@@ -8,7 +8,7 @@ const FormFilter = () => {
 
     function submitHandler(event: FormEvent<HTMLFormElement>) : void{
         event.preventDefault();
-        if(searchFilterRef.current!=null) console.log(searchFilterRef.current.value);
+        // if(searchFilterRef.current!=null) console.log(searchFilterRef.current.value);
     }
 
   return (

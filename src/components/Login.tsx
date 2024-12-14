@@ -31,7 +31,7 @@ const Login = () => {
                     setErrorMessage(null); // Clear error message on success
                 })
                 .catch(error => {
-                    console.error('Login failed:', error.response.data);
+                    console.error('Login failed');
                     setErrorMessage(error.response.data);
                 });
 
@@ -128,9 +128,9 @@ const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword
             const formElements = new FormData(formRef.current);
             const formData = Object.fromEntries(formElements.entries());
 
-            console.log(formData);
+            // console.log(formData);
 
-            console.log(formData.emailId.toString());
+            // console.log(formData.emailId.toString());
 
             const emailId = formData.emailId.toString();
             const password = formData.newPassword.toString();
@@ -145,8 +145,8 @@ const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword
                     onClose();
                     setShowOtpModal(true);
                 })
-                .catch(error => {
-                    console.error('Failed to generate OTP:', error.response.data);
+                .catch(() => {
+                    console.error('Failed to generate OTP');
                 })
                 .finally(() => {
                     setIsSubmitting(false); // Re-enable button after operation
@@ -200,7 +200,7 @@ const OtpModal = ({ onClose, setIsProcessing, setOtpError, otpError, emailId, pa
                 password: password
             }
 
-            console.log(validateOtpBody);
+            // console.log(validateOtpBody);
 
             axios.post('https://referall-backend.onrender.com/auth/validate-otp', validateOtpBody)
                 .then(() => {

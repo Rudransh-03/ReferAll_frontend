@@ -18,7 +18,7 @@ const CreateJobPost = () => {
         if (formRef.current) {
             const formElements = new FormData(formRef.current);
             const formData = Object.fromEntries(formElements.entries());
-            console.log(formData);
+            // console.log(formData);
 
             try {
                 const response = await axios.post(`https://referall-backend.onrender.com/referPosts/createReferPost/${userId}`, formData,
@@ -32,7 +32,7 @@ const CreateJobPost = () => {
                 }
                 navigate("/your_job_posts");
             } catch (error) {
-                console.error(error);
+                console.error("Error");
             }
 
            formRef.current.reset();

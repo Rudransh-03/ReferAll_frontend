@@ -97,15 +97,15 @@ const SignUp = () => {
             const formElements = new FormData(formRef.current);
             const formData = Object.fromEntries(formElements.entries());
 
-            console.log("formData", formData);
+            // console.log("formData", formData);
 
             axios.post('https://referall-backend.onrender.com/auth/signup', formData)
-                .then(response => {
-                    console.log('SignUp successful:', response.data);
+                .then(() => {
+                    // console.log('SignUp successful:', response.data);
                     navigate("/login");
                 })
-                .catch(error => {
-                    console.error('SignUp failed:', error);
+                .catch(() => {
+                    console.error('SignUp failed');
                 });
 
             formRef.current.reset();

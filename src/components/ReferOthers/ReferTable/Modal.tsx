@@ -18,16 +18,15 @@ const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }
   const userId: string = useSelector((state: { user: userState }) => state.user.userId);
   
   async function clickHandler() {
-    const response = await axios.get(`https://referall-backend.onrender.com/changeIsReferredToInProgress/${data.postId}/${userId}`, {
-      headers: {
-        'Authorization': 'Bearer ' + jwtToken
-      }
+    await axios.get(`https://referall-backend.onrender.com/changeIsReferredToInProgress/${data.postId}/${userId}`, {
+        headers: {
+            'Authorization': 'Bearer ' + jwtToken
+        }
     });
 
-    console.log(response.data);
     window.location.reload();
     navigate("/");
-  }
+}
 
   if (!showModal) return null;
 

@@ -16,7 +16,7 @@ const SeekReferral = () => {
         if (formRef.current) {
             const formElements = new FormData(formRef.current);
             const formData = Object.fromEntries(formElements.entries());
-            console.log(formData);
+            // console.log(formData);
 
             try {
                 const response = await axios.post(`https://referall-backend.onrender.com/posts/addPost/${userId}`, formData, {
@@ -29,7 +29,7 @@ const SeekReferral = () => {
                 }
                 navigate("/view_requests");
             } catch (error) {
-                console.error(error);
+                console.error("error");
             }
 
             formRef.current.reset();

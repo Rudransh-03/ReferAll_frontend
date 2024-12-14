@@ -7,7 +7,7 @@ const StatusFilter = () => {
     const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;
         setSelectedValue(value);
-        console.log(value);
+        // console.log(value);
 
         if(value!=null && selectedValue.length > 0){
             

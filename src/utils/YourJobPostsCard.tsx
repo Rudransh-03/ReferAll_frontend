@@ -83,10 +83,10 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
             },
           }
         );
-        console.log("Status updates sent successfully:", statusUpdates);
+        // console.log("Status updates sent successfully:", statusUpdates);
         setStatusUpdates({});
       } catch (error) {
-        console.error("Error sending status updates:", error);
+        console.error("Error sending status updates");
       }
     }
     setIsModalOpen(false);
@@ -111,7 +111,7 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
       onDeleteSuccess(referPostId);
       handleCloseDeleteModal();
     } catch (error) {
-      console.error('Error deleting job post:', error);
+      console.error('Error deleting job post');
     } finally {
       setIsDeleting(false);
     }

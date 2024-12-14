@@ -47,21 +47,18 @@ const ApplyToJobPostCard: React.FC<YourJobPostsCardProps> = ({
 
     const handleApplyJob = async() => {
         
-        try {
-          console.log("referPostId and userId below");
-          console.log(referPostId+" "+userId);
-            const res = await axios.get(`https://referall-backend.onrender.com/referPosts/applyToReferPost/${referPostId}/${userId}`, {
+      try {
+        await axios.get(`https://referall-backend.onrender.com/referPosts/applyToReferPost/${referPostId}/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${jwtToken}`,
             },
-            });
-
-            console.log(res.data);
-            setIsApplied(true);
-            console.log(isApplied);
-        } catch (error) {
-            console.error('Error applying to job post:', error);
-        } 
+        });
+    
+        setIsApplied(true);
+    } catch (error) {
+        console.error('Error applying to job post');
+    }
+    
     }
 
   return (

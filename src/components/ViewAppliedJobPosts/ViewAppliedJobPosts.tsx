@@ -48,10 +48,10 @@ const ViewAppliedJobPosts: React.FC = () => {
             },
           }
         );
-        console.log(response.data);
+        // console.log(response.data);
         setJobPosts(response.data);
       } catch (error) {
-        console.error("Error fetching the job posts:", error);
+        console.error("Error fetching the job posts");
       } finally {
         setIsLoading(false); // Stop loading
       }

@@ -27,10 +27,10 @@ const ReferralRequestPosts = () => {
                         'Authorization': 'Bearer ' + jwtToken
                     }
                 });
-                console.log(response.data);
+                // console.log(response.data);
                 dispatch(yourRequestsActions.setYourRequestsObjects(response.data));
             } catch (error) {
-                console.error(error);
+                console.error("error");
             }
         };
 

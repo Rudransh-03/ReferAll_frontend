@@ -10,20 +10,15 @@ const Modal: React.FC<any> = ({ showModal, handleClose, data, getStatusDisplay }
   const userId: string = useSelector((state: { user: userState }) => state.user.userId);
   
   async function handleReferredClick() {
-    console.log("clicked!");
-    console.log(data.postId);
-
-    const response = await axios.get(`https://referall-backend.onrender.com/changeIsReferredToReferred/${data.postId}/${userId}`, {
-      headers: {
-        'Authorization': 'Bearer ' + jwtToken
-      }
+    await axios.get(`https://referall-backend.onrender.com/changeIsReferredToReferred/${data.postId}/${userId}`, {
+        headers: {
+            'Authorization': 'Bearer ' + jwtToken
+        }
     });
-
-    console.log(response.data);
 
     window.location.reload();
     handleClose();
-  }
+}
 
   if (!showModal) return null;
 

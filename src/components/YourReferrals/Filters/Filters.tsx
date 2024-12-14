@@ -47,7 +47,7 @@ const Filters = ({setArePostsNull, setShowPagination, setPageNumber} : any) => {
                     dispatch(referPostActions.setReferPostObjects(response.data));
                 }
             } catch (error) {
-                console.error(error);
+                console.error("error");
             }
         }
 
@@ -67,7 +67,7 @@ const Filters = ({setArePostsNull, setShowPagination, setPageNumber} : any) => {
                     dispatch(referPostActions.setReferPostObjects(response.data));
                 }
             } catch (error) {
-                console.error(error);
+                console.error("error");
             }
         }
     }

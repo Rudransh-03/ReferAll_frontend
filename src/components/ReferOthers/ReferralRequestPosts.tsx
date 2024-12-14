@@ -36,7 +36,7 @@ const ReferralRequestPosts = () => {
                 dispatch(referPostActions.setReferPostObjects(response.data));
                 setArePostsNull(response.data.length === 0);
             } catch (error) {
-                console.error(error);
+                console.error("Error");
                 setArePostsNull(true);
             } finally {
                 setIsLoading(false); // Stop loading posts
@@ -60,7 +60,7 @@ const ReferralRequestPosts = () => {
                 );
                 setPostsCount(response.data);
             } catch (error) {
-                console.error(error);
+                console.error("error");
             } finally {
                 setIsCountLoading(false); // Stop loading posts count
             }

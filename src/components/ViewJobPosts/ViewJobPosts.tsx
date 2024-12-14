@@ -50,7 +50,7 @@ const ViewJobPosts: React.FC = () => {
         );
         setJobPosts(response.data);
       } catch (error) {
-        console.error("Error fetching the job posts:", error);
+        console.error("Error fetching the job posts:");
       } finally {
         setIsLoading(false); // Stop loading
       }
