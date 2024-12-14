@@ -109,7 +109,7 @@ const ForgotPasswordModal = ({ onClose, setShowOtpModal, setEmailId, setPassword
     const [passwordError, setPasswordError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-    const handlePasswordValidation = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handlePasswordValidation = () => {
         const newPassword = formRef.current?.elements.namedItem("newPassword") as HTMLInputElement;
         const confirmPassword = formRef.current?.elements.namedItem("confirmPassword") as HTMLInputElement;
 
