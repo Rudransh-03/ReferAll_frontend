@@ -3,7 +3,7 @@ const EndNote = () => {
     <div className="flex flex-col items-center">
       <div className="mt-20 text-white text-center">
         <div className="text-5xl md:text-6xl font-semibold">
-          500+ <span className="md:h-20 bg-gradient-to-r from-indigo-800 to-violet-500 inline-block text-transparent bg-clip-text pt-2">Referrals Exchanged</span>
+          50+ <span className="md:h-20 bg-gradient-to-r from-indigo-800 to-violet-500 inline-block text-transparent bg-clip-text pt-2">Referrals Exchanged</span>
         </div>
       </div>
       <div className="mt-4 md:mt-12 text-xl text-white text-center px-12 lg:px-56">
