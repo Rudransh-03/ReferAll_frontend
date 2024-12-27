@@ -141,10 +141,10 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
               <p className="text-black text-sm mb-2 italic">(Posted on: {creationDate})</p>
             </div>
           </div>
-          <div>
+          <div className='ml-20'>
             <span className="font-bold text-sm md:text-base">Job Url: </span>{jobUrl}
           </div>
-          <div className="mt-2 mb-2 md:mt-4 md:mb-4">
+          <div className="ml-20 mt-2 mb-2 md:mt-4 md:mb-4">
             <p className="mb-2"><span className="font-bold text-sm md:text-base">Job Description: </span>{jobDescription}</p>
             <p><span className="font-bold text-sm md:text-base">Years of experience required: </span> {yoeRequired}</p>
           </div>
@@ -188,7 +188,11 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
                         <td className="px-4 py-2 text-center">{applicant.user.emailId}</td>
                         <td className="px-4 py-2 text-center">
                           <a
-                            href={applicant.user.resumeUrl}
+                            href={
+                              applicant.user.resumeUrl.startsWith("http://") || applicant.user.resumeUrl.startsWith("https://")
+                                ? applicant.user.resumeUrl
+                                : `https://${applicant.user.resumeUrl}`
+                            }
                             className="text-blue-500 hover:underline"
                             target="_blank"
                             rel="noopener noreferrer"
