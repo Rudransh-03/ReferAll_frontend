@@ -221,7 +221,7 @@ const OtpModal = ({ onClose, setIsProcessing, setOtpError, otpError, emailId, pa
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white w-11/12 md:w-6/12 lg:w-4/12 rounded-md p-8">
-                <h2 className="text-center text-xl font-semibold mb-4">Enter OTP</h2>
+                <h2 className="text-center text-xl font-semibold mb-4">Enter OTP sent to your email id for verification</h2>
                 <form ref={formRef} onSubmit={submitHandler}>
                     <input type="text" name="otp" placeholder="Enter OTP" required className="w-full mb-4 p-2 border rounded-md" />
                     {otpError && <div className="text-red-600 text-center mb-4">{otpError}</div>}
