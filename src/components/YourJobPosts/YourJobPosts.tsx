@@ -111,7 +111,7 @@ const YourJobPosts: React.FC = () => {
               />
             ))
           ) : (
-            <div className="text-xl text-indigo-700 mt-8">No job posts found!</div>
+            <div className="text-xl text-indigo-700 mt-8">You have not created a job post yet, create one and help people get placed :)</div>
           )}
         </div>
       )}

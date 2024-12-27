@@ -100,7 +100,7 @@ const ViewJobPosts: React.FC = () => {
               />
             ))
           ) : (
-            <div className="text-xl text-indigo-700 mt-8">No job posts found!</div>
+            <div className="text-xl text-indigo-700 mt-8">No jobs found! You'll see the jobs posted by people as and when they come!</div>
           )}
         </div>
       )}

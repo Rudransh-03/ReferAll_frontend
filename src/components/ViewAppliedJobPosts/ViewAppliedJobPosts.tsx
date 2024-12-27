@@ -91,8 +91,8 @@ const ViewAppliedJobPosts: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div className="flex justify-center mt-28 text-xl text-indigo-700 font-semibold">
-          No applications found!
+        <div className="flex justify-center mt-28 text-xl text-indigo-700 font-normal">
+          You haven't applied to any job posts yet
         </div>
       )}
     </div>

@@ -138,7 +138,7 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
           <div className="flex justify-center">
             <div className="font-semibold text-xl md:text-2xl bg-gradient-to-r from-indigo-800 to-violet-500 inline-block text-transparent bg-clip-text pt-2">
               Job Title: {jobTitle}
-              <p className="text-black text-sm mb-2 italic">(Posted on: {creationDate})</p>
+              <p className="text-black text-sm mb-2 italic flex justify-center">(Posted on: {creationDate})</p>
             </div>
           </div>
           <div className='ml-20'>
@@ -146,7 +146,7 @@ const YourJobPostsCard: React.FC<YourJobPostsCardProps> = ({
           </div>
           <div className="ml-20 mt-2 mb-2 md:mt-4 md:mb-4">
             <p className="mb-2"><span className="font-bold text-sm md:text-base">Job Description: </span>{jobDescription}</p>
-            <p><span className="font-bold text-sm md:text-base">Years of experience required: </span> {yoeRequired}</p>
+            <p><span className="font-bold text-sm md:text-bas">Years of experience required: </span> {yoeRequired}</p>
           </div>
 
           <button
